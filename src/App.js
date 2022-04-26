@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from 'react';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyles from './globalStyles';
+import { lightColors, darkColors } from './styleguide/themedColors';
+import { ThemeContext } from './context/ContextWrapper';
+import Header from './components/Molecules/Header';
+import Main from './components/Organisms/Main';
 
-function App() {
+export default function App() {
+  const { darkTheme } = useContext(ThemeContext);
+
+  const theme = darkTheme ? darkColors : lightColors;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Header />
+      <Main />
+    </ThemeProvider>
   );
 }
-
-export default App;
