@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <S_HEADER>
       <h1>Simple JS</h1>
-      <Flex columnGap={1.5}>
+      <Flex as="aside" columnGap={1.5}>
         <ThemeSwitcher />
         <GithubLink />
       </Flex>

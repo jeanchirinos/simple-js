@@ -36,12 +36,18 @@ export default function CodeEditor({
     setCompiledCode(compiledCode);
   }
 
+  const highlightWithLineNumbers = input =>
+    highlight(input, languages.js)
+      .split('\n')
+      .map((line, i) => `<span class='editorLineNumber'>${i + 1}</span>${line}`)
+      .join('\n');
+
   return (
     <S_EDITOR
       placeholder={placeholder}
       value={code}
       onValueChange={code => compileCode(code)}
-      highlight={code => highlight(code, languages.js)}
+      highlight={code => highlightWithLineNumbers(code)}
       textareaId={textareaId}
     />
   );
@@ -52,6 +58,24 @@ export const S_EDITOR = styled(Editor)(
     min-height: 100%;
     font-family: 'Fira code', 'Fira Mono', monospace;
     font-size: 14px;
+    counter-reset: line;
+
+    .editorLineNumber {
+      color: ${theme.font_light};
+      width: 30px;
+      text-align: right;
+      position: absolute;
+      left: 0px;
+    }
+
+    textarea,
+    pre {
+      padding: 0.8rem 0.8rem 0 3.5rem !important;
+    }
+
+    textarea:focus {
+      outline: none;
+    }
 
     .token.operator {
       background-color: transparent;
@@ -99,14 +123,5 @@ export const S_EDITOR = styled(Editor)(
         color: #978e81;
       }
     `}
-
-    textarea,
-    pre {
-      padding: 0.8rem 0.8rem 0 0.8rem !important;
-    }
-
-    textarea:focus {
-      outline: none;
-    }
   `
 );

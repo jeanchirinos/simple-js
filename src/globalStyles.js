@@ -9,7 +9,6 @@ export default createGlobalStyle(
     ::before {
       margin: 0;
       box-sizing: border-box;
-      transition: none;
     }
 
     body {
