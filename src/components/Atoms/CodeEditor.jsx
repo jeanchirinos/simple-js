@@ -59,6 +59,7 @@ export const S_EDITOR = styled(Editor)(
     font-family: 'Fira code', 'Fira Mono', monospace;
     font-size: 14px;
     counter-reset: line;
+    line-height: 1.5rem;
 
     .editorLineNumber {
       color: ${theme.font_light};
