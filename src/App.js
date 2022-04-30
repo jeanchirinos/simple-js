@@ -5,6 +5,7 @@ import { Theme } from 'context/ThemeContext';
 import { lightColors, darkColors } from 'styleguide/themedColors';
 import Main from 'components/Organisms/Main';
 import Header from 'components/Molecules/Header';
+import CustomToaster from 'components/Atoms/CustomToaster';
 
 export default function App() {
   const { darkTheme } = useContext(Theme);
@@ -17,6 +18,7 @@ export default function App() {
         <GlobalStyles />
         <Header />
         <Main />
+        <CustomToaster />
       </ThemeProvider>
     );
   }

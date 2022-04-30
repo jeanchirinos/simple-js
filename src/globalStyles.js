@@ -16,9 +16,16 @@ export default createGlobalStyle(
       color: ${theme.font};
     }
 
+    .toaster {
+      background-color: ${theme.toast_background};
+      color: ${theme.toast_color};
+      font-size: 0.8rem;
+    }
+
     h1,
     p,
-    ul {
+    ul,
+    .toaster {
       font-family: 'Raleway';
     }
 

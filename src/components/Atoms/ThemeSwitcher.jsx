@@ -7,7 +7,7 @@ export default function ThemeSwitcher() {
   const { toggleTheme } = useContext(Theme);
 
   return (
-    <S_THEMESWITCHER onClick={toggleTheme}>
+    <S_THEMESWITCHER onClick={toggleTheme} title="Cambia el tema 🌔">
       <HiOutlineMoon />
       <HiOutlineSun />
     </S_THEMESWITCHER>

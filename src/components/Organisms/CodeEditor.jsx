@@ -57,8 +57,6 @@ const S_CODE_EDITOR_BOX = styled(S_CODE_BOX)(
       left: 50%;
       transform: translate(-50%, -50%);
       font-weight: bold;
-      pointer-events: none;
-      user-select: none;
       opacity: 0;
       transition: opacity 0.2s ease-in-out;
     }

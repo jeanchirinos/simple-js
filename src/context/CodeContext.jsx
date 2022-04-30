@@ -1,4 +1,5 @@
 import { useState, createContext } from 'react';
+import toast from 'react-hot-toast';
 
 export const Code = createContext();
 
@@ -7,7 +8,14 @@ export default function CodeContext({ children }) {
   const [compiledCode, setCompiledCode] = useState(code);
 
   function clearCode() {
+    if (!code) {
+      toast('No hay código para borrar', { icon: '🧹' });
+      return;
+    }
+
     setCode('');
+    setCompiledCode('');
+    toast('Código borrado', { icon: '🧹' });
   }
 
   function uploadFile(e) {
@@ -19,9 +27,16 @@ export default function CodeContext({ children }) {
 
     reader.onload = e => {
       const fileContent = e.target.result;
+
+      if (!fileContent) {
+        toast('No hay contenido', { icon: '📄' });
+        return;
+      }
+
       const lines = fileContent.split(/\r\n|\n/);
       setCode(lines.join('\n'));
       setCompiledCode(lines.join('\n'));
+      toast('Código cargado', { icon: '📄' });
     };
 
     reader.onerror = e => alert(e.target.error.name);
