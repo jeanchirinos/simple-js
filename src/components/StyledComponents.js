@@ -74,3 +74,13 @@ export const BOX = styled.div(
     transition: outline 0.3s, box-shadow 0.3s, background-color 0.3s;
   `
 );
+
+export const S_CODE_BOX = styled(BOX)`
+  overflow: hidden;
+  position: relative;
+
+  > div {
+    height: 100%;
+    overflow: auto;
+  }
+`;

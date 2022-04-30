@@ -1,4 +1,4 @@
-import { S_CODE_BOX } from 'components/Molecules/CodeSection';
+import { S_CODE_BOX } from 'components/StyledComponents';
 import CodeActions from 'components/Molecules/CodeActions';
 import CodeBox from 'components/Atoms/CodeEditor';
 

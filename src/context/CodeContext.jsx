@@ -10,9 +10,35 @@ export default function CodeContext({ children }) {
     setCode('');
   }
 
+  function uploadFile(e) {
+    const file = e.dataTransfer?.files[0] || e.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = e => {
+      const fileContent = e.target.result;
+      const lines = fileContent.split(/\r\n|\n/);
+      setCode(lines.join('\n'));
+      setCompiledCode(lines.join('\n'));
+    };
+
+    reader.onerror = e => alert(e.target.error.name);
+
+    reader.readAsText(file);
+  }
+
   return (
     <Code.Provider
-      value={{ code, setCode, compiledCode, setCompiledCode, clearCode }}
+      value={{
+        code,
+        setCode,
+        compiledCode,
+        setCompiledCode,
+        clearCode,
+        uploadFile,
+      }}
     >
       {children}
     </Code.Provider>
