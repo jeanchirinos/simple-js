@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { BOX, S_SECTION } from '../StyledComponents';
-import Analyzers from './Analyzers';
-import Errors from './Errors';
-import Variables from './Variables';
+import { S_SECTION, BOX } from 'components/StyledComponents';
+import Analyzers from 'components/Molecules/Analyzers';
+import Errors from 'components/Molecules/Errors';
+import Variables from 'components/Molecules/Variables';
 
 export default function InfoSection() {
   const allBoxes = true;
@@ -34,6 +34,7 @@ const S_INFO_SECTION = styled(S_SECTION)(
 
     ${BOX} {
       padding: 0.8rem 0.8rem 0 0.8rem;
+      overflow: auto;
 
       p {
         margin-bottom: 0.8rem;

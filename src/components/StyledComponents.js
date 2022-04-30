@@ -70,9 +70,7 @@ export const BOX = styled.div(
   ({ theme }) => css`
     background-color: ${theme.secondary};
     border-radius: 8px;
-    overflow: auto;
     box-shadow: ${theme.box_shadow};
-    position: relative;
     transition: outline 0.3s, box-shadow 0.3s, background-color 0.3s;
   `
 );

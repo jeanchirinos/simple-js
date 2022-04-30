@@ -14,7 +14,6 @@ export default createGlobalStyle(
     body {
       background-color: ${theme.primary};
       color: ${theme.font};
-      visibility: hidden;
     }
 
     h1,
@@ -31,9 +30,20 @@ export default createGlobalStyle(
       font-weight: 400;
     }
 
+    svg.muted-icon,
+    .muted-icon svg {
+      cursor: pointer;
+      color: gray;
+      transition: color 0.3s;
+
+      :hover {
+        color: ${theme.opposite.primary};
+      }
+    }
+
     /** EXTRA */
     ::selection {
-      background-color: rgba(233, 233, 99, 0.5);
+      background-color: ${theme.selection_background};
     }
 
     ::-webkit-scrollbar {

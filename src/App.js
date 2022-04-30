@@ -1,21 +1,23 @@
 import { useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
-import GlobalStyles from './globalStyles';
-import { lightColors, darkColors } from './styleguide/themedColors';
-import { ThemeContext } from './context/ContextWrapper';
-import Header from './components/Molecules/Header';
-import Main from './components/Organisms/Main';
+import GlobalStyles from 'globalStyles';
+import { Theme } from 'context/ThemeContext';
+import { lightColors, darkColors } from 'styleguide/themedColors';
+import Main from 'components/Organisms/Main';
+import Header from 'components/Molecules/Header';
 
 export default function App() {
-  const { darkTheme } = useContext(ThemeContext);
+  const { darkTheme } = useContext(Theme);
 
-  const theme = darkTheme ? darkColors : lightColors;
+  if (darkTheme !== undefined) {
+    const theme = darkTheme ? darkColors : lightColors;
 
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Header />
-      <Main />
-    </ThemeProvider>
-  );
+    return (
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Header />
+        <Main />
+      </ThemeProvider>
+    );
+  }
 }

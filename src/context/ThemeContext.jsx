@@ -1,28 +1,27 @@
 import { createContext, useState, useEffect } from 'react';
 
-export const ThemeContext = createContext();
+export const Theme = createContext();
 
-export default function ContextWrapper({ children }) {
-  const [darkTheme, setDarkTheme] = useState(true);
+export default function ThemeContext({ children }) {
+  const [darkTheme, setDarkTheme] = useState(undefined);
 
   useEffect(() => {
     getTheme();
 
-    // TODO: Refactor code
-    setTimeout(() => {
-      document.body.style.visibility = 'visible';
+    window.onload = () => {
       document.body.style.transition = 'background-color 0.3s, color 0.3s';
-    }, 300);
+    };
   }, []);
 
   function getTheme() {
     if (localStorage.darkTheme) {
       const localDarkTheme = JSON.parse(localStorage.darkTheme);
       setDarkTheme(localDarkTheme);
-    } else {
-      setDarkTheme(true);
-      localStorage.darkTheme = true;
+      return;
     }
+
+    setDarkTheme(true);
+    localStorage.darkTheme = true;
   }
 
   function toggleTheme() {
@@ -31,8 +30,8 @@ export default function ContextWrapper({ children }) {
   }
 
   return (
-    <ThemeContext.Provider value={{ darkTheme, getTheme, toggleTheme }}>
+    <Theme.Provider value={{ darkTheme, toggleTheme }}>
       {children}
-    </ThemeContext.Provider>
+    </Theme.Provider>
   );
 }

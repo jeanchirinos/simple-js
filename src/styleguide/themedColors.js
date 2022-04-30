@@ -8,6 +8,7 @@ const darkTheme = {
   font_light: '#B9C6C3',
   box_shadow: '1px 4px 4px 1px rgba(0,0,0,0.4)',
   scrollbar_thumb: 'rgba(255, 255, 255, 0.2)',
+  selection_background: 'rgba(233, 233, 99, 0.2)',
 };
 
 const lightTheme = {
@@ -19,18 +20,19 @@ const lightTheme = {
   font_light: '#978e81',
   box_shadow: '1px 4px 4px 1px rgba(194,194,194,0.4)',
   scrollbar_thumb: 'rgba(0, 0, 0, 0.2)',
+  selection_background: 'rgba(233, 233, 99, 0.5)',
 };
 
 export const darkColors = {
   ...darkTheme,
   opposite: {
-    ...lightTheme,
+    primary: lightTheme.primary,
   },
 };
 
 export const lightColors = {
   ...lightTheme,
   opposite: {
-    ...darkTheme,
+    primary: darkTheme.primary,
   },
 };

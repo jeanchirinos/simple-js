@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import styled, { css } from 'styled-components';
-import { ThemeContext } from '../../context/ContextWrapper';
+import { Theme } from 'context/ThemeContext';
 import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi';
 
 export default function ThemeSwitcher() {
-  const { toggleTheme } = useContext(ThemeContext);
+  const { toggleTheme } = useContext(Theme);
 
   return (
     <S_THEMESWITCHER onClick={toggleTheme}>

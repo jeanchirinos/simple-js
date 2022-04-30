@@ -1,6 +1,10 @@
+import { useContext } from 'react';
+import { Code } from 'context/CodeContext';
 import { AiOutlineFolderOpen } from 'react-icons/ai';
 
-export default function OpenFileButton({ setCode, setCompiledCode }) {
+export default function OpenFileButton() {
+  const { setCode, setCompiledCode } = useContext(Code);
+
   function uploadFile(e) {
     const file = e.target.files[0];
 
@@ -21,8 +25,10 @@ export default function OpenFileButton({ setCode, setCompiledCode }) {
   }
 
   function handleClick() {
-    document.getElementById('inputFile').value = null;
-    document.getElementById('inputFile').click();
+    const inputFile = document.getElementById('inputFile');
+
+    inputFile.value = null;
+    inputFile.click();
   }
 
   return (

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import CodeSection from '../Molecules/CodeSection';
-import InfoSection from '../Molecules/InfoSection';
+import CodeSection from 'components/Molecules/CodeSection';
+import InfoSection from 'components/Molecules/InfoSection';
 
 export default function Main() {
   return (

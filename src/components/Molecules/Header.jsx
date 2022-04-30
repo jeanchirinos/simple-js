@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Flex } from '../StyledComponents';
-import ThemeSwitcher from '../Atoms/ThemeSwitcher';
-import GithubLink from '../Atoms/GithubLink';
+import { Flex } from 'components/StyledComponents';
+import ThemeSwitcher from 'components/Atoms/ThemeSwitcher';
+import GithubLink from 'components/Atoms/GithubLink';
 
 export default function Header() {
   return (

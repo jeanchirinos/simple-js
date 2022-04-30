@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { AiFillGithub } from 'react-icons/ai';
 
 export default function GithubLink() {
@@ -8,19 +8,11 @@ export default function GithubLink() {
       target="_blank"
       rel="noreferrer"
     >
-      <S_GITHUBLINK />
+      <S_GITHUBLINK className="muted-icon" />
     </a>
   );
 }
 
-const S_GITHUBLINK = styled(AiFillGithub)(
-  ({ theme }) => css`
-    color: gray;
-    font-size: 28px;
-    transition: color 0.3s;
-
-    :hover {
-      color: ${theme.opposite.primary};
-    }
-  `
-);
+const S_GITHUBLINK = styled(AiFillGithub)`
+  font-size: 28px;
+`;

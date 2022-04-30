@@ -1,4 +1,4 @@
-import { BOX, Grid } from '../StyledComponents';
+import { Grid, BOX } from 'components/StyledComponents';
 
 export default function Errors() {
   return (
@@ -13,12 +13,6 @@ export default function Errors() {
       <BOX>
         <p>Errores Semánticos</p>
         <ul>
-          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
-          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
-          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
-          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
-          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
-          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
           <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
           <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
           <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
