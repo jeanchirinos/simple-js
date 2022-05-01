@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from 'globalStyles';
 import { Theme } from 'context/ThemeContext';
 import { lightColors, darkColors } from 'styleguide/themedColors';
-import Main from 'components/Organisms/Main';
+import Main from 'components/Templates/Main';
 import Header from 'components/Molecules/Header';
 import CustomToaster from 'components/Atoms/CustomToaster';
 

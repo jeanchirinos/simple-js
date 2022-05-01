@@ -10,20 +10,15 @@ import 'prismjs/themes/prism.css';
 function Editor() {
   const { code, setCode, setCompiledCode } = useContext(Code);
 
-  // TODO: Implement compiler function
   function compileCode(code) {
+    const pattern =
+      /^(?<palabra_reservada>if)(?<inicio_condicion>\()(?<condicion>.+)(?<fin_condicion>\))\s(?<inicio_bloque>\{)\n(?<instruccion>.+);\n(?<fin_bloque>\})/m;
+
+    const match = code.match(pattern);
+    console.log(match?.groups || 'No match');
+
     setCode(code);
-    //
-
-    // let compiledCode = '';
-
-    // if (code === 'console.log') {
-    //   compiledCode = 'log';
-    // }
-
-    let compiledCode = code;
-
-    setCompiledCode(compiledCode);
+    setCompiledCode(code);
   }
 
   const highlightWithLineNumbers = input =>

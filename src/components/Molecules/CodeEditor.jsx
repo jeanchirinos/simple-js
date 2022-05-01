@@ -18,8 +18,11 @@ export default function CodeEditor() {
 
   function handleDrop(e) {
     e.preventDefault();
-    setIsDraggingOver(false);
-    uploadFile(e);
+
+    if (isDraggingOver) {
+      setIsDraggingOver(false);
+      uploadFile(e);
+    }
   }
 
   return (
@@ -30,7 +33,6 @@ export default function CodeEditor() {
       onDrop={handleDrop}
     >
       <p>Suelta el archivo</p>
-
       <div>
         <CodeBox.Editor />
         <CodeActions.Editor />
@@ -52,11 +54,12 @@ const S_CODE_EDITOR_BOX = styled(S_CODE_BOX)(
     }
 
     p {
+      font-weight: bold;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-weight: bold;
+      pointer-events: none;
       opacity: 0;
       transition: opacity 0.2s ease-in-out;
     }

@@ -4,14 +4,11 @@ import toast from 'react-hot-toast';
 export const Code = createContext();
 
 export default function CodeContext({ children }) {
-  const [code, setCode] = useState(`function add(a, b) {\n  return a + b;\n}`);
+  const [code, setCode] = useState(`if(a>b && a >0) {\nc = a – b;\n}`);
   const [compiledCode, setCompiledCode] = useState(code);
 
   function clearCode() {
-    if (!code) {
-      toast('No hay código para borrar', { icon: '🧹' });
-      return;
-    }
+    if (!code) return;
 
     setCode('');
     setCompiledCode('');
@@ -19,9 +16,20 @@ export default function CodeContext({ children }) {
   }
 
   function uploadFile(e) {
+    const icon = '📁';
+
     const file = e.dataTransfer?.files[0] || e.target.files[0];
 
     if (!file) return;
+
+    if (file.type !== 'text/plain' && file.type !== 'text/javascript') {
+      toast.error('Sube un archivo .txt o .js', {
+        duration: 3000,
+        className: 'toast error',
+      });
+
+      return;
+    }
 
     const reader = new FileReader();
 
@@ -29,17 +37,15 @@ export default function CodeContext({ children }) {
       const fileContent = e.target.result;
 
       if (!fileContent) {
-        toast('No hay contenido', { icon: '📄' });
+        toast('No hay contenido', { icon });
         return;
       }
 
       const lines = fileContent.split(/\r\n|\n/);
       setCode(lines.join('\n'));
       setCompiledCode(lines.join('\n'));
-      toast('Código cargado', { icon: '📄' });
+      toast('Código cargado', { icon });
     };
-
-    reader.onerror = e => alert(e.target.error.name);
 
     reader.readAsText(file);
   }

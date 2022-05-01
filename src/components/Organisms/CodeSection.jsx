@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { S_SECTION } from 'components/StyledComponents';
-import CodeEditor from 'components/Organisms/CodeEditor';
-import CodeCompiled from 'components/Organisms/CodeCompiled';
+import CodeEditor from 'components/Molecules/CodeEditor';
+import CodeCompiled from 'components/Molecules/CodeCompiled';
 
 export default function CodeSection() {
   return (

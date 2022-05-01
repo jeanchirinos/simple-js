@@ -16,16 +16,21 @@ export default createGlobalStyle(
       color: ${theme.font};
     }
 
-    .toaster {
-      background-color: ${theme.toast_background};
-      color: ${theme.toast_color};
+    .toast {
       font-size: 0.8rem;
+      background-color: ${theme.toast_background_success};
+      color: ${theme.toast_color_success};
+
+      &.error {
+        background-color: ${theme.toast_background_error};
+        color: ${theme.toast_color_error};
+      }
     }
 
     h1,
     p,
     ul,
-    .toaster {
+    .toast {
       font-family: 'Raleway';
     }
 
@@ -39,12 +44,17 @@ export default createGlobalStyle(
 
     svg.muted-icon,
     .muted-icon svg {
-      cursor: pointer;
       color: gray;
+      cursor: pointer;
       transition: color 0.3s;
 
-      :hover {
+      &:not(.disabled):hover {
         color: ${theme.opposite.primary};
+      }
+
+      &.disabled {
+        opacity: 0.4;
+        cursor: default;
       }
     }
 

@@ -21,7 +21,7 @@ export default function OpenFileButton() {
         accept=".js, .txt"
         onChange={uploadFile}
       />
-      <AiOutlineFolderOpen onClick={handleClick} title="Abre un archivo 📄" />
+      <AiOutlineFolderOpen onClick={handleClick} title="Abre un archivo 📁" />
     </>
   );
 }
