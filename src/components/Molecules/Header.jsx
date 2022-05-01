@@ -16,7 +16,7 @@ export default function Header() {
 }
 
 const S_HEADER = styled.header`
-  height: 80px;
+  height: 5rem;
   padding: 0 1rem;
   display: flex;
   align-items: center;

@@ -4,7 +4,7 @@ import { AiOutlineCopy } from 'react-icons/ai';
 export default function CopyButton({ copyValue }) {
   const icon = '📋';
 
-  const codeIsEmpty = copyValue.trim() === '';
+  const codeIsEmpty = !copyValue.trim();
   const className = codeIsEmpty && 'disabled';
 
   function handleCopy() {

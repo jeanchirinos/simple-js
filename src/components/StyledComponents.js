@@ -76,8 +76,8 @@ export const BOX = styled.div(
 );
 
 export const S_CODE_BOX = styled(BOX)`
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 
   > div {
     height: 100%;

@@ -5,7 +5,7 @@ import { AiOutlineClear } from 'react-icons/ai';
 export default function ClearCodeButton() {
   const { code, clearCode } = useContext(Code);
 
-  const className = code === '' && 'disabled';
+  const className = !code && 'disabled';
 
   return (
     <AiOutlineClear

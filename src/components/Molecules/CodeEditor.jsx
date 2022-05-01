@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
 import styled, { css } from 'styled-components';
+import { Code } from 'context/CodeContext';
 import { S_CODE_BOX } from 'components/StyledComponents';
 import CodeActions from 'components/Molecules/CodeActions';
 import CodeBox from 'components/Atoms/CodeEditor';
-import { Code } from 'context/CodeContext';
 
 export default function CodeEditor() {
   const [isDraggingOver, setIsDraggingOver] = useState(false);

@@ -5,7 +5,7 @@ import { AiOutlineDownload } from 'react-icons/ai';
 export default function DownloadButton() {
   const { compiledCode } = useContext(Code);
 
-  const compiledCorrectly = compiledCode.trim() !== '';
+  const compiledCorrectly = compiledCode.trim();
   const title = 'Descarga el código 🔻';
 
   if (compiledCorrectly) {

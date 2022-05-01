@@ -37,10 +37,10 @@ const S_INFO_SECTION = styled(S_SECTION)(
       overflow: auto;
 
       p {
-        margin-bottom: 0.8rem;
-        text-align: end;
         color: ${theme.font_light};
         font-size: 0.9rem;
+        text-align: end;
+        margin-bottom: 0.8rem;
       }
 
       ul {

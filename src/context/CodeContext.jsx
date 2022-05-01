@@ -16,8 +16,6 @@ export default function CodeContext({ children }) {
   }
 
   function uploadFile(e) {
-    const icon = '📁';
-
     const file = e.dataTransfer?.files[0] || e.target.files[0];
 
     if (!file) return;
@@ -36,15 +34,10 @@ export default function CodeContext({ children }) {
     reader.onload = e => {
       const fileContent = e.target.result;
 
-      if (!fileContent) {
-        toast('No hay contenido', { icon });
-        return;
-      }
-
       const lines = fileContent.split(/\r\n|\n/);
       setCode(lines.join('\n'));
       setCompiledCode(lines.join('\n'));
-      toast('Código cargado', { icon });
+      toast('Código cargado', { icon: '📁' });
     };
 
     reader.readAsText(file);

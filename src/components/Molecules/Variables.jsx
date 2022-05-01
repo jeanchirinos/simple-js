@@ -1,4 +1,4 @@
-import { BOX, Grid } from 'components/StyledComponents';
+import { Grid, BOX } from 'components/StyledComponents';
 
 export default function Variables() {
   return (
