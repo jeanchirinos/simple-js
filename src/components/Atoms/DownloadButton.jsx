@@ -11,7 +11,9 @@ export default function DownloadButton() {
   if (compiledCorrectly) {
     return (
       <a
-        href={`data:text/plain;charset=utf-8,${encodeURI(compiledCode)}`}
+        href={`data:text/plain;charset=utf-8,${encodeURIComponent(
+          compiledCode
+        )}`}
         download="archivo-comp.js"
         title={title}
       >

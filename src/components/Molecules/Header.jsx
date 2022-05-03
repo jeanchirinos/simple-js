@@ -2,11 +2,14 @@ import styled from 'styled-components';
 import { Flex } from 'components/StyledComponents';
 import ThemeSwitcher from 'components/Atoms/ThemeSwitcher';
 import GithubLink from 'components/Atoms/GithubLink';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
     <S_HEADER>
-      <h1>Simple JS</h1>
+      <Link to="/">
+        <h1>Simple JS</h1>
+      </Link>
       <Flex as="aside" columnGap={1.5}>
         <ThemeSwitcher />
         <GithubLink />

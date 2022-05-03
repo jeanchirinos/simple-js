@@ -11,12 +11,6 @@ function Editor() {
   const { code, setCode, setCompiledCode } = useContext(Code);
 
   function compileCode(code) {
-    const pattern =
-      /^(?<palabra_reservada>if)(?<inicio_condicion>\()(?<condicion>.+)(?<fin_condicion>\))\s(?<inicio_bloque>\{)\n(?<instruccion>.+);\n(?<fin_bloque>\})/m;
-
-    const match = code.match(pattern);
-    console.log(match?.groups || 'No match');
-
     setCode(code);
     setCompiledCode(code);
   }

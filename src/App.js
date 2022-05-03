@@ -3,11 +3,10 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from 'globalStyles';
 import { Theme } from 'context/ThemeContext';
 import { lightColors, darkColors } from 'styleguide/themedColors';
-import Main from 'components/Templates/Main';
 import Header from 'components/Molecules/Header';
 import CustomToaster from 'components/Atoms/CustomToaster';
 
-export default function App() {
+export default function App({ children }) {
   const { darkTheme } = useContext(Theme);
 
   if (darkTheme !== undefined) {
@@ -17,7 +16,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Header />
-        <Main />
+        {children}
         <CustomToaster />
       </ThemeProvider>
     );

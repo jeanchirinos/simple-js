@@ -14,23 +14,6 @@ export default createGlobalStyle(
     body {
       background-color: ${theme.primary};
       color: ${theme.font};
-    }
-
-    .toast {
-      font-size: 0.8rem;
-      background-color: ${theme.toast_background_success};
-      color: ${theme.toast_color_success};
-
-      &.error {
-        background-color: ${theme.toast_background_error};
-        color: ${theme.toast_color_error};
-      }
-    }
-
-    h1,
-    p,
-    ul,
-    .toast {
       font-family: 'Raleway';
     }
 
@@ -38,8 +21,15 @@ export default createGlobalStyle(
       font-weight: 900;
     }
 
-    p {
-      font-weight: 400;
+    .toast {
+      font-size: 0.9rem;
+      background-color: ${theme.toast_background_success};
+      color: ${theme.toast_color_success};
+
+      &.error {
+        background-color: ${theme.toast_background_error};
+        color: ${theme.toast_color_error};
+      }
     }
 
     svg.muted-icon,
@@ -55,6 +45,16 @@ export default createGlobalStyle(
       &.disabled {
         opacity: 0.4;
         cursor: default;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: text-shadow 0.3s;
+
+      :hover {
+        text-shadow: 0px 0px 1px ${theme.opposite.primary};
       }
     }
 

@@ -29,7 +29,7 @@ function Compiled() {
   );
 }
 
-const S_CODE_EDITOR_ACTIONS = styled.aside.attrs({
+export const S_CODE_EDITOR_ACTIONS = styled.aside.attrs({
   className: 'muted-icon',
 })`
   display: flex;

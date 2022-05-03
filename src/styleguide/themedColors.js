@@ -13,6 +13,7 @@ const darkTheme = {
   toast_color_success: '#ace7d3',
   toast_background_error: '#33150f',
   toast_color_error: '#e7b6ac',
+  table_border: '#363636',
 };
 
 const lightTheme = {
@@ -29,6 +30,7 @@ const lightTheme = {
   toast_color_success: '#2d9a76',
   toast_background_error: '#f7e6e3',
   toast_color_error: '#9a3f2d',
+  table_border: '#e5e7eb',
 };
 
 export const darkColors = {

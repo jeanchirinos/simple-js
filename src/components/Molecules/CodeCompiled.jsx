@@ -1,6 +1,6 @@
 import { S_CODE_BOX } from 'components/StyledComponents';
 import CodeActions from 'components/Molecules/CodeActions';
-import CodeBox from 'components/Atoms/CodeEditor';
+import CodeBox from 'components/Atoms/CodeBox';
 
 export default function CodeCompiled() {
   return (

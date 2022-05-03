@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { Code } from 'context/CodeContext';
 import { S_CODE_BOX } from 'components/StyledComponents';
 import CodeActions from 'components/Molecules/CodeActions';
-import CodeBox from 'components/Atoms/CodeEditor';
+import CodeBox from 'components/Atoms/CodeBox';
 
 export default function CodeEditor() {
   const [isDraggingOver, setIsDraggingOver] = useState(false);
@@ -41,9 +41,10 @@ export default function CodeEditor() {
   );
 }
 
-const S_CODE_EDITOR_BOX = styled(S_CODE_BOX)(
+export const S_CODE_EDITOR_BOX = styled(S_CODE_BOX)(
   ({ theme, isDraggingOver }) => css`
     outline: 0.5px solid transparent;
+    height: 100%;
 
     :focus-within {
       outline: 0.5px solid ${theme.editor_border_focus};
