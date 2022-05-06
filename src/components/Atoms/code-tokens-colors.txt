@@ -40,19 +40,19 @@
 
 .token.regex-source.language-regex {
     color: #e90;
-  }
+  } ✅
 
 .token.regex-delimiter {
     color: #e90;
-  }
+  } ✅
 
 .token.regex-flags {
     color: #e90;
-  }
+  } ✅
 
 .token.literal-property.property {
     color: #905;
-  }
+  } ✅
 
 .token.comment {
     color: slategray;
@@ -60,4 +60,4 @@
 
 .token.string-property.property {
     color: #905;
-  }
+  } ✅

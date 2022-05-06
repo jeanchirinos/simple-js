@@ -67,13 +67,19 @@ export default function Editor({ code, setCode }) {
   }
   // OpenFileButton
 
-  function handleClick() {
+  function handleOpenFile() {
     const inputFile = document.getElementById('inputFile');
 
     inputFile.value = null;
     inputFile.click();
   }
   // OpenFileButton
+
+  // ClearCodeButton
+  function handleClearCode() {
+    setCode('');
+    toast('Código borrado', { icon: '🧹' });
+  }
 
   return (
     <S_CODE_EDITOR_BOX
@@ -101,13 +107,13 @@ export default function Editor({ code, setCode }) {
               onChange={uploadFile}
             />
             <AiOutlineFolderOpen
-              onClick={handleClick}
+              onClick={handleOpenFile}
               title="Abre un archivo 📁"
             />
           </>
           <AiOutlineClear
             title="Borra el código 🧹"
-            onClick={() => setCode('')}
+            onClick={handleClearCode}
             className={!code && 'disabled'}
           />
         </S_CODE_EDITOR_ACTIONS>

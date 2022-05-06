@@ -15,6 +15,7 @@ export default createGlobalStyle(
       background-color: ${theme.primary};
       color: ${theme.font};
       font-family: 'Raleway';
+      font-size: 0.9rem;
     }
 
     h1 {
@@ -50,12 +51,7 @@ export default createGlobalStyle(
 
     a {
       text-decoration: none;
-      color: inherit;
-      transition: text-shadow 0.3s;
-
-      :hover {
-        text-shadow: 0px 0px 1px ${theme.opposite.primary};
-      }
+      color: ${theme.font};
     }
 
     /** EXTRA */

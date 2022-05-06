@@ -94,6 +94,26 @@ const darkTokens = css`
   .token.comment {
     color: #978e81;
   }
+
+  .token.literal-property.property {
+    color: #f963b6;
+  }
+
+  .token.string-property.property {
+    color: #f963b6;
+  }
+
+  .token.regex-source.language-regex {
+    color: #f9af2a;
+  }
+
+  .token.regex-delimiter {
+    color: #f9af2a;
+  }
+
+  .token.regex-flags {
+    color: #f9af2a;
+  }
 `;
 
 export const S_EDITOR = styled(SimpleCodeEditor)(

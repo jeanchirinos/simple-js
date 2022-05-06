@@ -13,7 +13,8 @@ const darkTheme = {
   toast_color_success: '#ace7d3',
   toast_background_error: '#33150f',
   toast_color_error: '#e7b6ac',
-  table_border: '#363636',
+  table_background: 'hsl(60, 55%, 13%)',
+  table_color: 'hsl(60, 55%, 79%)',
 };
 
 const lightTheme = {
@@ -30,7 +31,8 @@ const lightTheme = {
   toast_color_success: '#2d9a76',
   toast_background_error: '#f7e6e3',
   toast_color_error: '#9a3f2d',
-  table_border: '#e5e7eb',
+  table_background: 'hsl(60, 56%, 93%)',
+  table_color: 'hsl(60, 55%, 39%)',
 };
 
 export const darkColors = {

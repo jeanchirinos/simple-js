@@ -9,7 +9,7 @@
     "yarn.lock": true,
     "src/index.js": false,
     "jsconfig.json": true,
-    "src/components/Atoms/code-tokens-colors.txt": true,
+    "src/components/Atoms/code-tokens-colors.txt": false,
   },
   "cSpell.ignoreWords": [
     "GITHUBLINK",
