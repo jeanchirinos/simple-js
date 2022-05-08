@@ -32,7 +32,7 @@ export default function CodeEditor() {
       onDragLeave={() => setIsDraggingOver(false)}
       onDrop={handleDrop}
     >
-      <p>Suelta el archivo</p>
+      <span>Suelta el archivo</span>
       <div>
         <CodeBox.Editor />
         <CodeActions.Editor />
@@ -54,7 +54,7 @@ export const S_CODE_EDITOR_BOX = styled(S_CODE_BOX)(
       transition: filter 0.2s ease-in-out;
     }
 
-    p {
+    > span {
       font-weight: bold;
       position: absolute;
       top: 50%;
@@ -71,7 +71,7 @@ export const S_CODE_EDITOR_BOX = styled(S_CODE_BOX)(
         filter: blur(12px);
       }
 
-      p {
+      > span {
         opacity: 1;
       }
     `}

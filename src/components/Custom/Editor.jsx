@@ -88,7 +88,7 @@ export default function Editor({ code, setCode }) {
       onDragLeave={() => setIsDraggingOver(false)}
       onDrop={handleDrop}
     >
-      <p>Suelta el archivo</p>
+      <span>Suelta el archivo</span>
       <div>
         <S_EDITOR
           placeholder="Escribe aquí..."

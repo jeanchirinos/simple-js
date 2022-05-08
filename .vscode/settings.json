@@ -7,20 +7,7 @@
     "package.json": true,
     "README.md": true,
     "yarn.lock": true,
-    "src/index.js": false,
     "jsconfig.json": true,
-    "src/components/Atoms/code-tokens-colors.txt": false,
+    "src/components/Atoms/code-tokens-colors.txt": true,
   },
-  "cSpell.ignoreWords": [
-    "GITHUBLINK",
-    "THEMESWITCHER",
-    "clike",
-    "prismjs",
-    "raleway",
-    "simplejs"
-  ],
-  "cSpell.words": [
-    "slategray",
-    "styleguide"
-  ]
 }

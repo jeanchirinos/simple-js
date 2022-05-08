@@ -24,7 +24,7 @@ function Compiled() {
   return (
     <S_CODE_EDITOR_ACTIONS>
       <CopyButton copyValue={compiledCode} />
-      <DownloadButton />
+      <DownloadButton downloadValue={compiledCode} />
     </S_CODE_EDITOR_ACTIONS>
   );
 }

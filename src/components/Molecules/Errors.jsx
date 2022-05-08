@@ -1,16 +1,16 @@
-import { Grid, BOX } from 'components/StyledComponents';
+import { Grid, S_INFO_BOX } from 'components/StyledComponents';
 
 export default function Errors() {
   return (
-    <Grid templateColumns="1fr 1fr" columnGap={0.5}>
-      <BOX>
+    <Grid templateRows="minmax(0, 1fr) minmax(0, 1fr)" rowGap={0.5}>
+      <S_INFO_BOX>
         <p>Errores Sintácticos</p>
         <ul>
           <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
           <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
         </ul>
-      </BOX>
-      <BOX>
+      </S_INFO_BOX>
+      <S_INFO_BOX>
         <p>Errores Semánticos</p>
         <ul>
           <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
@@ -20,8 +20,14 @@ export default function Errors() {
           <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
           <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
           <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
+          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
+          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
+          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
+          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
+          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
+          <li>Lorem ipsum dolor sit Lorem ipsum dolor sit</li>
         </ul>
-      </BOX>
+      </S_INFO_BOX>
     </Grid>
   );
 }

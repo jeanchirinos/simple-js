@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
-import { S_SECTION, BOX } from 'components/StyledComponents';
+import { S_SECTION } from 'components/StyledComponents';
 import Analyzers from 'components/Molecules/Analyzers';
-import Errors from 'components/Molecules/Errors';
+// import Errors from 'components/Molecules/Errors';
 import Variables from 'components/Molecules/Variables';
 
 export default function InfoSection() {
@@ -11,7 +11,7 @@ export default function InfoSection() {
     <S_INFO_SECTION allBoxes={allBoxes}>
       {allBoxes ? (
         <>
-          <Errors />
+          {/* <Errors /> */}
           <Analyzers />
           <Variables />
         </>
@@ -23,33 +23,14 @@ export default function InfoSection() {
 }
 
 const S_INFO_SECTION = styled(S_SECTION)(
-  ({ theme, allBoxes }) => css`
+  ({ allBoxes }) => css`
     height: 100vh;
-    grid-template-rows: ${allBoxes &&
-    'minmax(0, 20fr) minmax(0, 50fr) minmax(0, 30fr)'};
+    /* grid-template-rows: ${allBoxes &&
+    'minmax(0, 20fr) minmax(0, 50fr) minmax(0, 30fr)'}; */
+    grid-template-rows: ${allBoxes && 'minmax(0, 75fr) minmax(0, 25fr)'};
 
     @media (min-width: 768px) {
       height: calc(100vh - 80px);
-    }
-
-    ${BOX} {
-      padding: 0.8rem 0.8rem 0 0.8rem;
-      overflow: auto;
-
-      p {
-        color: ${theme.font_light};
-        font-size: 0.9rem;
-        text-align: end;
-        margin-bottom: 0.8rem;
-      }
-
-      ul {
-        font-size: 0.8rem;
-        line-height: 1.2rem;
-        padding-inline-start: 1rem;
-        margin-block-start: 0;
-        margin-block-end: 0;
-      }
     }
   `
 );

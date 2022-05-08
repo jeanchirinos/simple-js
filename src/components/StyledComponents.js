@@ -84,3 +84,24 @@ export const S_CODE_BOX = styled(BOX)`
     overflow: auto;
   }
 `;
+
+export const S_INFO_BOX = styled(BOX)(
+  ({ theme }) => css`
+    padding: 0.8rem 0.8rem 0 0.8rem;
+    overflow: auto;
+    p {
+      color: ${theme.font_light};
+      font-size: 0.9rem;
+      text-align: end;
+      margin-bottom: 0.8rem;
+    }
+
+    ul {
+      font-size: 0.8rem;
+      line-height: 1.2rem;
+      padding-inline-start: 1rem;
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  `
+);

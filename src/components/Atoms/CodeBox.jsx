@@ -7,6 +7,12 @@ import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css';
 
+const highlightWithLineNumbers = input =>
+  highlight(input, languages.js)
+    .split('\n')
+    .map((line, i) => `<span class='lineNumber'>${i + 1}</span>${line}`)
+    .join('\n');
+
 function Editor() {
   const { code, setCode, setCompiledCode } = useContext(Code);
 
@@ -14,12 +20,6 @@ function Editor() {
     setCode(code);
     setCompiledCode(code);
   }
-
-  const highlightWithLineNumbers = input =>
-    highlight(input, languages.js)
-      .split('\n')
-      .map((line, i) => `<span class='lineNumber'>${i + 1}</span>${line}`)
-      .join('\n');
 
   return (
     <S_EDITOR
@@ -38,12 +38,6 @@ function Compiled() {
     const compiled_textarea = document.getElementById('compiled_textarea');
     compiled_textarea.setAttribute('readonly', true);
   }, []);
-
-  const highlightWithLineNumbers = input =>
-    highlight(input, languages.js)
-      .split('\n')
-      .map((line, i) => `<span class='lineNumber'>${i + 1}</span>${line}`)
-      .join('\n');
 
   return (
     <S_EDITOR

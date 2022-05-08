@@ -1,20 +1,20 @@
-import { Grid, BOX } from 'components/StyledComponents';
+import { Grid, S_INFO_BOX } from 'components/StyledComponents';
 
 export default function Variables() {
   return (
     <Grid template={['1fr 1fr', '1fr 1fr']} gap={0.5}>
-      <BOX>
+      <S_INFO_BOX>
         <p>Variables #️⃣</p>
-      </BOX>
-      <BOX>
+      </S_INFO_BOX>
+      <S_INFO_BOX>
         <p>Variables #️⃣ y valores</p>
-      </BOX>
-      <BOX>
+      </S_INFO_BOX>
+      <S_INFO_BOX>
         <p>Variables ⚡</p>
-      </BOX>
-      <BOX>
+      </S_INFO_BOX>
+      <S_INFO_BOX>
         <p>Variables ⚡ y cadenas</p>
-      </BOX>
+      </S_INFO_BOX>
     </Grid>
   );
 }

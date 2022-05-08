@@ -51,7 +51,7 @@ const S_MAIN = styled.main`
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     grid-template: calc(100vh - 80px) / 1fr auto 1fr;
 
     section {
