@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 export const Code = createContext();
 
 export default function CodeContext({ children }) {
-  const [code, setCode] = useState(`if(a>b && a >0) {\nc = a - b;\n}`);
+  const [code, setCode] = useState(`if( a > b && a > 0 ) {\n  c = a - b;\n}`);
   const [compiledCode, setCompiledCode] = useState(code);
 
   function clearCode() {

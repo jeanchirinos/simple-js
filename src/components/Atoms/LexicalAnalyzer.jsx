@@ -51,7 +51,7 @@ export default function LexicalAnalyzer({ code }) {
         </thead>
         <tbody>
           {matchesByLine.map(line =>
-            line.matches?.map(match => getRows(match, line.lineNumber))
+            line.matches.map(match => getRows(match, line.lineNumber))
           )}
           {matchesByBlock.map((match, index) => (
             <Fragment key={index}>{getRows(match, null, true)}</Fragment>
