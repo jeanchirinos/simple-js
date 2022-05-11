@@ -1,6 +1,6 @@
 const dataTypes = '(?<tipo_de_dato>int|double)';
 const curlyBraces = '(?<llave_de_apertura>{)|(?<llave_de_cierre>})';
-const reserverdWords = '(?<palabra_reservada>const|if|else|for';
+const reserverdWords = '(?<palabra_reservada>const|if|else|for)';
 const relations = '(?<relacion><=|>=|<>|<|>|=)';
 const ids = '(?<id>[a-zA-Z]\\w*)';
 const nums = '(?<![\\w.])(?<numero>\\d+\\.\\d+|\\d+)(?![\\w.])';
