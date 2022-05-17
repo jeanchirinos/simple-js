@@ -4,6 +4,7 @@ import '@fontsource/raleway/400.css';
 
 export default createGlobalStyle(
   ({ theme }) => css`
+    /*  */
     *,
     ::after,
     ::before {
@@ -11,19 +12,45 @@ export default createGlobalStyle(
       box-sizing: border-box;
     }
 
+    :root {
+      --vh100: calc(100vh - 5rem);
+    }
+
     body {
       background-color: ${theme.primary};
       color: ${theme.font};
       font-family: 'Raleway';
-      font-size: 0.9rem;
     }
 
     h1 {
       font-weight: 900;
     }
 
-    .toast {
-      font-size: 0.9rem;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ::selection {
+      background-color: ${theme.selection_background};
+    }
+
+    ::-webkit-scrollbar {
+      background-color: transparent;
+      width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: ${theme.scrollbar_thumb};
+      border-radius: 10px;
+    }
+    /*  */
+
+    .vh100 {
+      height: var(--vh100);
+    }
+
+    .toaster {
+      font-size: 0.8rem;
       background-color: ${theme.toast_background_success};
       color: ${theme.toast_color_success};
 
@@ -47,25 +74,6 @@ export default createGlobalStyle(
         opacity: 0.4;
         cursor: default;
       }
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /** EXTRA */
-    ::selection {
-      background-color: ${theme.selection_background};
-    }
-
-    ::-webkit-scrollbar {
-      background-color: transparent;
-      width: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: ${theme.scrollbar_thumb};
-      border-radius: 10px;
     }
   `
 );

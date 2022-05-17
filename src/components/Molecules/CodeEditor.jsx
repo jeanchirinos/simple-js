@@ -43,15 +43,13 @@ export default function CodeEditor() {
 
 export const S_CODE_EDITOR_BOX = styled(S_CODE_BOX)(
   ({ theme, isDraggingOver }) => css`
-    outline: 0.5px solid transparent;
     height: 100%;
+    outline-width: 0.5px;
+    outline-style: solid;
+    outline-color: transparent;
 
     :focus-within {
-      outline: 0.5px solid ${theme.editor_border_focus};
-    }
-
-    > div {
-      transition: filter 0.2s ease-in-out;
+      outline-color: ${theme.editor_border_focus};
     }
 
     > span {
@@ -63,6 +61,10 @@ export const S_CODE_EDITOR_BOX = styled(S_CODE_BOX)(
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.2s ease-in-out;
+    }
+
+    > div {
+      transition: filter 0.2s;
     }
 
     ${isDraggingOver &&

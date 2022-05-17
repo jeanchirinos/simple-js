@@ -17,6 +17,6 @@ const S_INFO_SECTION = styled(S_SECTION)`
   grid-template-rows: minmax(0, 75fr) minmax(0, 25fr);
 
   @media (min-width: 768px) {
-    height: calc(100vh - 80px);
+    height: var(--vh100);
   }
 `;

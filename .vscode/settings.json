@@ -9,7 +9,7 @@
     "yarn.lock": true,
     "jsconfig.json": true,
     "src/components/Atoms/code-tokens-colors.txt": true,
-    // Project Only
+    // Hide other pages
     "src/pages/LexicalAnalyzer": true,
     "src/components/Custom": true,
   },

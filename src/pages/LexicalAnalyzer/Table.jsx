@@ -40,7 +40,7 @@ export default function Table({ matchAllChecked, code }) {
   }
 
   return (
-    <div>
+    <div className="table-container">
       <S_TABLE>
         <thead>
           <tr>
@@ -91,7 +91,7 @@ const S_TABLE = styled.table(
       transition: background-color 0.3s, color 0.3s;
     }
 
-    tr:nth-child(even) {
+    tr:nth-child(odd):not(.matchHeader) {
       background-color: ${theme.secondary};
     }
 

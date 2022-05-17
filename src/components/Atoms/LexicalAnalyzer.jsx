@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import styled, { css } from 'styled-components';
-import { regExpPerLine, regExpMultiline } from './regExp';
+import { regExpPerLine, regExpMultiline } from 'regexp/Lexic';
 
 export default function LexicalAnalyzer({ code }) {
   const matchesByLine = code.split('\n').map((line, index) => {
@@ -12,7 +12,7 @@ export default function LexicalAnalyzer({ code }) {
 
   const matchesByBlock = Array.from(code.matchAll(regExpMultiline));
 
-  function getRows(match, lineNumber) {
+  function fillRows(match, lineNumber) {
     const groups = Object.entries(match.groups);
 
     return groups.map((group, index) => {
@@ -37,7 +37,7 @@ export default function LexicalAnalyzer({ code }) {
   }
 
   return (
-    <div style={{ backgroundColor: 'transparent' }}>
+    <div>
       <S_TABLE>
         <thead>
           <tr>
@@ -49,10 +49,10 @@ export default function LexicalAnalyzer({ code }) {
         </thead>
         <tbody>
           {matchesByLine.map(line =>
-            line.matches.map(match => getRows(match, line.lineNumber))
+            line.matches.map(match => fillRows(match, line.lineNumber))
           )}
           {matchesByBlock.map((match, index) => (
-            <Fragment key={index}>{getRows(match, '-')}</Fragment>
+            <Fragment key={index}>{fillRows(match, '-')}</Fragment>
           ))}
         </tbody>
       </S_TABLE>

@@ -4,7 +4,7 @@ export default function CustomToaster() {
   return (
     <Toaster
       position="top-center"
-      toastOptions={{ className: 'toast', duration: 2000 }}
+      toastOptions={{ className: 'toaster', duration: 2000 }}
     />
   );
 }
