@@ -2,7 +2,7 @@ import { Grid, S_INFO_BOX } from 'components/StyledComponents';
 
 export default function Variables() {
   return (
-    <Grid template={['1fr 1fr', '1fr 1fr']} gap={0.5}>
+    <Grid template={['repeat(2, 1fr)', 'repeat(2, 1fr)']} gap={0.5}>
       <S_INFO_BOX>
         <p>Variables #️⃣</p>
       </S_INFO_BOX>

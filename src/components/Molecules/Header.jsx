@@ -22,6 +22,6 @@ const S_HEADER = styled.header`
   height: 5rem;
   padding: 0 1rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 `;

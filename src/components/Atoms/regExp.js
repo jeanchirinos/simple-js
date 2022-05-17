@@ -12,7 +12,6 @@ const regExpPattern = `${dataTypes}|${curlyBraces}|${reserverdWords}|${relations
 export const regExpPerLine = new RegExp(regExpPattern, 'dg');
 
 // BLOCKS
-
 const BLOCK = type =>
   `\\s*(?<i_bloque_${type}>{)\\s*(?<instruccion_${type}>.+)\\s*(?<f_bloque_${type}>})`;
 

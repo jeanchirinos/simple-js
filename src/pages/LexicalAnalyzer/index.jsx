@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import Editor from 'components/Custom/Editor';
-import Checkbox from './components/Checkbox';
-import Table from './components/Table';
+import Checkbox from './Checkbox';
+import Table from './Table';
 
 export default function LexicalAnalyzer() {
   const [code, setCode] = useState('if(a>b && a >0) {\nc = a – b;\n}');

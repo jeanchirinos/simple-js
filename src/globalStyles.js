@@ -51,7 +51,7 @@ export default createGlobalStyle(
 
     a {
       text-decoration: none;
-      color: ${theme.font};
+      color: inherit;
     }
 
     /** EXTRA */

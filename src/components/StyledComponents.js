@@ -89,6 +89,7 @@ export const S_INFO_BOX = styled(BOX)(
   ({ theme }) => css`
     padding: 0.8rem 0.8rem 0 0.8rem;
     overflow: auto;
+
     p {
       color: ${theme.font_light};
       font-size: 0.9rem;

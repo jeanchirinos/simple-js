@@ -19,5 +19,4 @@ export default function CodeSection() {
 
 const S_CODE_SECTION = styled(S_SECTION)`
   height: calc(100vh - 80px);
-  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
 `;

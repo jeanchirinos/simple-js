@@ -12,24 +12,22 @@ export default function LexicalAnalyzer({ code }) {
 
   const matchesByBlock = Array.from(code.matchAll(regExpMultiline));
 
-  function getRows(match, lineNumber, isABlock) {
+  function getRows(match, lineNumber) {
     const groups = Object.entries(match.groups);
 
     return groups.map((group, index) => {
       const token = group[1];
-
-      const isABlockHeader = isABlock && token === match[0];
-
-      const className = isABlockHeader ? 'matchHeader' : '';
-
       if (!token) return <Fragment key={index}></Fragment>;
 
       const type = group[0];
       const position = match.indices.groups[type][0];
 
+      const isABlockHeader = lineNumber === '-' && token === match[0];
+      const className = isABlockHeader ? 'matchHeader' : '';
+
       return (
         <tr key={index} className={className}>
-          <td>{lineNumber || '-'}</td>
+          <td>{lineNumber}</td>
           <td>{position}</td>
           <td>{token}</td>
           <td>{type}</td>
@@ -39,7 +37,7 @@ export default function LexicalAnalyzer({ code }) {
   }
 
   return (
-    <div className="table-container">
+    <div style={{ backgroundColor: 'transparent' }}>
       <S_TABLE>
         <thead>
           <tr>
@@ -54,7 +52,7 @@ export default function LexicalAnalyzer({ code }) {
             line.matches.map(match => getRows(match, line.lineNumber))
           )}
           {matchesByBlock.map((match, index) => (
-            <Fragment key={index}>{getRows(match, null, true)}</Fragment>
+            <Fragment key={index}>{getRows(match, '-')}</Fragment>
           ))}
         </tbody>
       </S_TABLE>

@@ -17,11 +17,10 @@ export default function ThemeContext({ children }) {
     if (localStorage.darkTheme) {
       const localDarkTheme = JSON.parse(localStorage.darkTheme);
       setDarkTheme(localDarkTheme);
-      return;
+    } else {
+      setDarkTheme(true);
+      localStorage.darkTheme = true;
     }
-
-    setDarkTheme(true);
-    localStorage.darkTheme = true;
   }
 
   function toggleTheme() {

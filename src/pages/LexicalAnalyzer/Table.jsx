@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import styled, { css } from 'styled-components';
-import { regExp, regExpAll } from '../regExp';
+import { regExp, regExpAll } from './regExp';
 
 export default function Table({ matchAllChecked, code }) {
   let match, matches;
@@ -40,7 +40,7 @@ export default function Table({ matchAllChecked, code }) {
   }
 
   return (
-    <div className="table-container">
+    <div>
       <S_TABLE>
         <thead>
           <tr>
