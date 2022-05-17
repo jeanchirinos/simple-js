@@ -26,7 +26,7 @@ const S_THEMESWITCHER = styled.div(
     align-items: center;
     justify-content: space-between;
     padding: 0 5px;
-    transition: background-color 0.3s;
+    transition: background-color var(--transition-t);
     cursor: pointer;
 
     :after {
@@ -38,9 +38,9 @@ const S_THEMESWITCHER = styled.div(
       position: absolute;
       /* left: 3px;
       transform: ${theme.dark && 'translateX(24px)'};
-      transition: transform 0.3s; */
+      transition: transform var(--transition-t); */
       left: ${theme.dark ? '27px' : '3px'};
-      transition: left 0.3s;
+      transition: left var(--transition-t);
     }
   `
 );

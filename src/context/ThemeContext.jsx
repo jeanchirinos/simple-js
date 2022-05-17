@@ -1,15 +1,15 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useLayoutEffect } from 'react';
 
 export const Theme = createContext();
 
 export default function ThemeContext({ children }) {
   const [darkTheme, setDarkTheme] = useState(undefined);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getTheme();
 
     window.onload = () => {
-      document.body.style.transition = 'background-color 0.3s, color 0.3s';
+      document.body.classList.add('withTransition');
     };
   }, []);
 

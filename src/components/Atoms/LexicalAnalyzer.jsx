@@ -37,33 +37,30 @@ export default function LexicalAnalyzer({ code }) {
   }
 
   return (
-    <div>
-      <S_TABLE>
-        <thead>
-          <tr>
-            <th>Línea</th>
-            <th>Posición</th>
-            <th>Token</th>
-            <th>Tipo</th>
-          </tr>
-        </thead>
-        <tbody>
-          {matchesByLine.map(line =>
-            line.matches.map(match => fillRows(match, line.lineNumber))
-          )}
-          {matchesByBlock.map((match, index) => (
-            <Fragment key={index}>{fillRows(match, '-')}</Fragment>
-          ))}
-        </tbody>
-      </S_TABLE>
-    </div>
+    <S_TABLE>
+      <thead>
+        <tr>
+          <th>Línea</th>
+          <th>Posición</th>
+          <th>Token</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        {matchesByLine.map(line =>
+          line.matches.map(match => fillRows(match, line.lineNumber))
+        )}
+        {matchesByBlock.map((match, index) => (
+          <Fragment key={index}>{fillRows(match, '-')}</Fragment>
+        ))}
+      </tbody>
+    </S_TABLE>
   );
 }
 
 const S_TABLE = styled.table(
   ({ theme }) => css`
     width: 100%;
-    height: 100%;
     border-spacing: 0;
     font-size: 14px;
     text-align: center;
@@ -77,10 +74,9 @@ const S_TABLE = styled.table(
       padding: 1rem 0.8rem;
     }
 
-    .matchHeader {
+    tr.matchHeader {
       background-color: ${theme.table_background};
       color: ${theme.table_color};
-      transition: background-color 0.3s, color 0.3s;
     }
 
     tr:nth-child(even):not(.matchHeader) {
@@ -89,7 +85,7 @@ const S_TABLE = styled.table(
 
     thead,
     tr {
-      transition: background-color 0.3s;
+      transition: background-color var(--transition-t);
     }
   `
 );

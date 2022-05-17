@@ -14,12 +14,18 @@ export default createGlobalStyle(
 
     :root {
       --vh100: calc(100vh - 5rem);
+      --transition-t: 0.3s;
     }
 
     body {
       background-color: ${theme.primary};
       color: ${theme.font};
       font-family: 'Raleway';
+
+      &.withTransition {
+        transition: background-color var(--transition-t),
+          color var(--transition-t);
+      }
     }
 
     h1 {
@@ -64,7 +70,7 @@ export default createGlobalStyle(
     .muted-icon svg {
       color: gray;
       cursor: pointer;
-      transition: color 0.3s;
+      transition: color var(--transition-t);
 
       &:not(.disabled):hover {
         color: ${theme.opposite.primary};

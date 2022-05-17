@@ -60,11 +60,11 @@ export const S_CODE_EDITOR_BOX = styled(S_CODE_BOX)(
       transform: translate(-50%, -50%);
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.2s ease-in-out;
+      transition: opacity var(--transition-t);
     }
 
     > div {
-      transition: filter 0.2s;
+      transition: filter var(--transition-t);
     }
 
     ${isDraggingOver &&

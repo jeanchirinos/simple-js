@@ -71,7 +71,8 @@ export const BOX = styled.div(
     background-color: ${theme.secondary};
     border-radius: 8px;
     box-shadow: ${theme.box_shadow};
-    transition: outline 0.3s, box-shadow 0.3s, background-color 0.3s;
+    transition: background-color var(--transition-t),
+      outline var(--transition-t), box-shadow var(--transition-t);
   `
 );
 

@@ -12,21 +12,19 @@ import CustomToaster from 'components/Atoms/CustomToaster';
 export default function App() {
   const { darkTheme } = useContext(Theme);
 
-  if (darkTheme !== undefined) {
-    const theme = darkTheme ? darkColors : lightColors;
+  const theme = darkTheme ? darkColors : lightColors;
 
-    return (
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <GlobalStyles />
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/analizador-lexico" element={<LexicalAnalyzer />} />
-          </Routes>
-          <CustomToaster />
-        </ThemeProvider>
-      </BrowserRouter>
-    );
-  }
+  return (
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/analizador-lexico" element={<LexicalAnalyzer />} />
+        </Routes>
+        <CustomToaster />
+      </ThemeProvider>
+    </BrowserRouter>
+  );
 }
