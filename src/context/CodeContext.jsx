@@ -23,7 +23,7 @@ export default function CodeContext({ children }) {
     if (file.type !== 'text/plain' && file.type !== 'text/javascript') {
       toast.error('Sube un archivo .txt o .js', {
         duration: 3000,
-        className: 'toast error',
+        className: 'toaster error',
       });
 
       return;

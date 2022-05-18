@@ -116,7 +116,6 @@ export const S_EDITOR = styled(SimpleCodeEditor)(
     font-family: 'Fira code', 'Fira Mono', monospace;
     font-size: 14px;
     line-height: 1.5rem;
-    counter-reset: line;
 
     .lineNumber {
       color: ${theme.font_light};

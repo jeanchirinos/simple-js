@@ -13,7 +13,7 @@ export default createGlobalStyle(
     }
 
     :root {
-      --vh100: calc(100vh - 5rem);
+      --vh100: calc(100vh - 80px);
       --transition-t: 0.3s;
     }
 

@@ -3,16 +3,18 @@ import styled, { css } from 'styled-components';
 import { regExpPerLine, regExpMultiline } from 'regexp/Lexic';
 
 export default function LexicalAnalyzer({ code }) {
-  const matchesByLine = code.split('\n').map((line, index) => {
-    const matches = Array.from(line.matchAll(regExpPerLine));
+  const lines = code.split('\n');
+
+  const matchesByLine = lines.map((line, index) => {
     const lineNumber = index + 1;
+    const matches = Array.from(line.matchAll(regExpPerLine));
 
     return { lineNumber, matches };
   });
 
   const matchesByBlock = Array.from(code.matchAll(regExpMultiline));
 
-  function fillRows(match, lineNumber) {
+  function getRow(match, lineNumber) {
     const groups = Object.entries(match.groups);
 
     return groups.map((group, index) => {
@@ -48,10 +50,10 @@ export default function LexicalAnalyzer({ code }) {
       </thead>
       <tbody>
         {matchesByLine.map(line =>
-          line.matches.map(match => fillRows(match, line.lineNumber))
+          line.matches.map(match => getRow(match, line.lineNumber))
         )}
         {matchesByBlock.map((match, index) => (
-          <Fragment key={index}>{fillRows(match, '-')}</Fragment>
+          <Fragment key={index}>{getRow(match, '-')}</Fragment>
         ))}
       </tbody>
     </S_TABLE>
