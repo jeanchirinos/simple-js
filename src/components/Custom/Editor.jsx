@@ -98,19 +98,17 @@ export default function Editor({ code, setCode }) {
         />
         <S_CODE_EDITOR_ACTIONS>
           <CopyButton copyValue={code} />
-          <>
-            <input
-              type="file"
-              id="inputFile"
-              hidden
-              accept=".js, .txt"
-              onChange={uploadFile}
-            />
-            <AiOutlineFolderOpen
-              onClick={handleOpenFile}
-              title="Abre un archivo 📁"
-            />
-          </>
+          <input
+            type="file"
+            id="inputFile"
+            hidden
+            accept=".js, .txt"
+            onChange={uploadFile}
+          />
+          <AiOutlineFolderOpen
+            onClick={handleOpenFile}
+            title="Abre un archivo 📁"
+          />
           <AiOutlineClear
             title="Borra el código 🧹"
             onClick={handleClearCode}

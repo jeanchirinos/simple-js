@@ -2,41 +2,41 @@ import { Fragment } from 'react';
 import styled, { css } from 'styled-components';
 import { regExpPerLine, regExpMultiline } from 'regexp/Lexic';
 
+function Rows({ match, lineNumber }) {
+  const groups = Object.entries(match.groups);
+
+  return groups.map((group, index) => {
+    const token = group[1];
+    if (!token) return <Fragment key={index}></Fragment>;
+
+    const type = group[0],
+      position = match.indices.groups[type][0];
+
+    const isABlockHeader = lineNumber === '-' && token === match[0],
+      className = isABlockHeader ? 'matchHeader' : '';
+
+    return (
+      <tr key={index} className={className}>
+        <td>{lineNumber}</td>
+        <td>{position}</td>
+        <td>{token}</td>
+        <td>{type}</td>
+      </tr>
+    );
+  });
+}
+
 export default function LexicalAnalyzer({ code }) {
   const lines = code.split('\n');
 
   const matchesByLine = lines.map((line, index) => {
-    const lineNumber = index + 1;
-    const matches = Array.from(line.matchAll(regExpPerLine));
+    const lineNumber = index + 1,
+      matches = Array.from(line.matchAll(regExpPerLine));
 
     return { lineNumber, matches };
   });
 
   const matchesByBlock = Array.from(code.matchAll(regExpMultiline));
-
-  function getRow(match, lineNumber) {
-    const groups = Object.entries(match.groups);
-
-    return groups.map((group, index) => {
-      const token = group[1];
-      if (!token) return <Fragment key={index}></Fragment>;
-
-      const type = group[0];
-      const position = match.indices.groups[type][0];
-
-      const isABlockHeader = lineNumber === '-' && token === match[0];
-      const className = isABlockHeader ? 'matchHeader' : '';
-
-      return (
-        <tr key={index} className={className}>
-          <td>{lineNumber}</td>
-          <td>{position}</td>
-          <td>{token}</td>
-          <td>{type}</td>
-        </tr>
-      );
-    });
-  }
 
   return (
     <S_TABLE>
@@ -50,10 +50,12 @@ export default function LexicalAnalyzer({ code }) {
       </thead>
       <tbody>
         {matchesByLine.map(line =>
-          line.matches.map(match => getRow(match, line.lineNumber))
+          line.matches.map(match => (
+            <Rows match={match} lineNumber={line.lineNumber} />
+          ))
         )}
-        {matchesByBlock.map((match, index) => (
-          <Fragment key={index}>{getRow(match, '-')}</Fragment>
+        {matchesByBlock.map(match => (
+          <Rows match={match} lineNumber="-" />
         ))}
       </tbody>
     </S_TABLE>

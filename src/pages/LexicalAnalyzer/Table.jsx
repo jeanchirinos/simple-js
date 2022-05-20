@@ -1,6 +1,27 @@
-import { Fragment } from 'react';
+import { BOX } from 'components/StyledComponents';
 import styled, { css } from 'styled-components';
 import { regExp, regExpAll } from './regExp';
+
+function Rows({ match }) {
+  const groups = Object.entries(match.groups);
+
+  return groups.map((group, index) => {
+    const type = group[0],
+      token = group[1],
+      position = match.indices.groups[type][0];
+
+    const isARowHeader = token === match[0],
+      className = isARowHeader ? 'matchHeader' : '';
+
+    return (
+      <tr key={index} className={className}>
+        <td>{position}</td>
+        <td>{token}</td>
+        <td>{type}</td>
+      </tr>
+    );
+  });
+}
 
 export default function Table({ matchAllChecked, code }) {
   let match, matches;
@@ -8,39 +29,8 @@ export default function Table({ matchAllChecked, code }) {
   if (!matchAllChecked) match = code.match(regExp);
   if (matchAllChecked) matches = Array.from(code.matchAll(regExpAll));
 
-  function getHeader(match, index) {
-    const token = match[0];
-    const position = `${match.indices[0][0]} - ${match.indices[0][1]}`;
-
-    return (
-      <tr className="matchHeader">
-        <td>{position}</td>
-        <td>{token}</td>
-        <td>Match {isFinite(index) && index + 1}</td>
-      </tr>
-    );
-  }
-
-  function getBody(match) {
-    const groups = Object.entries(match.groups);
-
-    return groups.map((group, index) => {
-      const type = group[0];
-      const token = group[1];
-      const position = `${match.indices.groups[type][0]} - ${match.indices.groups[type][1]}`;
-
-      return (
-        <tr key={index}>
-          <td>{position}</td>
-          <td>{token}</td>
-          <td>{type}</td>
-        </tr>
-      );
-    });
-  }
-
   return (
-    <div className="table-container">
+    <BOX style={{ overflow: 'auto', backgroundColor: 'transparent' }}>
       <S_TABLE>
         <thead>
           <tr>
@@ -50,28 +40,20 @@ export default function Table({ matchAllChecked, code }) {
           </tr>
         </thead>
         <tbody>
-          {match && (
-            <>
-              {getHeader(match)}
-              {getBody(match)}
-            </>
-          )}
-          {matches?.map((match, index) => (
-            <Fragment key={index}>
-              {getHeader(match, index)}
-              {getBody(match)}
-            </Fragment>
+          {match && <Rows match={match} />}
+          {matches?.map(match => (
+            <Rows match={match} />
           ))}
         </tbody>
       </S_TABLE>
-    </div>
+    </BOX>
   );
 }
 
 const S_TABLE = styled.table(
   ({ theme }) => css`
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     border-spacing: 0;
     font-size: 14px;
     text-align: center;
@@ -82,13 +64,12 @@ const S_TABLE = styled.table(
     }
 
     th {
-      padding: 1rem 0;
+      padding: 1rem 0.8rem;
     }
 
-    .matchHeader {
+    tr.matchHeader {
       background-color: ${theme.table_background};
       color: ${theme.table_color};
-      transition: background-color 0.3s, color 0.3s;
     }
 
     tr:nth-child(odd):not(.matchHeader) {
@@ -97,7 +78,7 @@ const S_TABLE = styled.table(
 
     thead,
     tr {
-      transition: background-color 0.3s;
+      transition: background-color var(--transition-t);
     }
   `
 );

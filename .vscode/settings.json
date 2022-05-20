@@ -10,7 +10,7 @@
     "jsconfig.json": true,
     "src/components/Atoms/code-tokens-colors.txt": true,
     // Hide other pages
-    "src/pages/LexicalAnalyzer": true,
-    "src/components/Custom": true,
+    "src/pages/LexicalAnalyzer": false,
+    "src/components/Custom": false,
   },
 }

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import Editor from 'components/Custom/Editor';
-import Checkbox from './Checkbox';
-import Table from './Table';
+import TextArea from './TextArea';
 
-export default function LexicalAnalyzer() {
-  const [code, setCode] = useState('if(a>b && a >0) {\nc = a – b;\n}');
-  const [matchAllChecked, setMatchAllChecked] = useState(false);
+export default function SyntacticAnalyzer() {
+  const [code, setCode] = useState(
+    'function(){\nint var1=1;\nString mensaje;\nString mensaje="Hola";\n}'
+  );
 
   return (
     <S_MAIN>
@@ -14,13 +14,7 @@ export default function LexicalAnalyzer() {
         <Editor code={code} setCode={setCode} />
       </section>
       <section>
-        <Checkbox
-          matchAllChecked={matchAllChecked}
-          setMatchAllChecked={setMatchAllChecked}
-        />
-      </section>
-      <section>
-        <Table code={code} matchAllChecked={matchAllChecked} />
+        <TextArea code={code} />
       </section>
     </S_MAIN>
   );
@@ -30,7 +24,7 @@ const S_MAIN = styled.main`
   height: var(--vh100);
   min-height: 500px;
   display: grid;
-  grid-template: 1fr auto 1fr / 1fr;
+  grid-template: repeat(2, 1fr) / 1fr;
 
   section {
     padding: 1rem;
@@ -45,6 +39,6 @@ const S_MAIN = styled.main`
   }
 
   @media (min-width: 768px) {
-    grid-template: 1fr / 1fr auto 1fr;
+    grid-template: 1fr / repeat(2, 1fr);
   }
 `;

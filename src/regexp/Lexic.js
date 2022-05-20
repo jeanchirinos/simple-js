@@ -1,11 +1,11 @@
-const dataTypes = '(?<tipo_de_dato>int|double)';
-const curlyBraces = '(?<llave_de_apertura>{)|(?<llave_de_cierre>})';
-const reserverdWords = '(?<palabra_reservada>const|if|else|for)';
-const relations = '(?<relacion><=|>=|<>|<|>|=)';
-const ids = '(?<![\\w."])(?<id>[a-zA-Z]\\w*)(?![\\w].")';
-const nums = '(?<![\\w."])(?<numero>\\d+\\.\\d+|\\d+)(?![\\w."])';
-const literals = '"(?<literal>[^"]+)"';
-const arithmetic = '(?<aritmetico>\\+|\\-|/|\\*|%)';
+const dataTypes = '(?<tipo_de_dato>int|double)',
+  curlyBraces = '(?<llave_de_apertura>{)|(?<llave_de_cierre>})',
+  reserverdWords = '(?<palabra_reservada>const|if|else|for)',
+  relations = '(?<relacion><=|>=|<>|<|>|=)',
+  ids = '(?<![\\w."])(?<id>[a-zA-Z]\\w*)(?![\\w].")',
+  nums = '(?<![\\w."])(?<numero>\\d+\\.\\d+|\\d+)(?![\\w."])',
+  literals = '"(?<literal>[^"]+)"',
+  arithmetic = '(?<aritmetico>\\+|\\-|/|\\*|%)';
 
 const regExpPattern = `${dataTypes}|${curlyBraces}|${reserverdWords}|${relations}|${ids}|${nums}|${literals}|${arithmetic}`;
 
