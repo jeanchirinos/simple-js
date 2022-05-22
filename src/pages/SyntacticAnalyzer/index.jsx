@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { S_MAIN } from 'components/StyledComponents';
 import Editor from 'components/Custom/Editor';
 import TextArea from './TextArea';
 
@@ -9,36 +10,21 @@ export default function SyntacticAnalyzer() {
   );
 
   return (
-    <S_MAIN>
+    <S_MAIN2>
       <section>
         <Editor code={code} setCode={setCode} />
       </section>
       <section>
         <TextArea code={code} />
       </section>
-    </S_MAIN>
+    </S_MAIN2>
   );
 }
 
-const S_MAIN = styled.main`
-  height: var(--vh100);
-  min-height: 500px;
-  display: grid;
-  grid-template: repeat(2, 1fr) / 1fr;
-
-  section {
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    > div {
-      width: min(800px, 100%);
-      height: min(500px, 100%);
-    }
-  }
+const S_MAIN2 = styled(S_MAIN)`
+  grid-template-rows: repeat(2, minmax(0, 1fr));
 
   @media (min-width: 768px) {
-    grid-template: 1fr / repeat(2, 1fr);
+    grid-template: minmax(0, 1fr) / repeat(2, minmax(0, 1fr));
   }
 `;

@@ -59,6 +59,7 @@ export const Grid = styled.article(
   `
 );
 
+//
 export const S_SECTION = styled.section`
   min-height: 700px;
   padding: 0.8rem;
@@ -104,6 +105,58 @@ export const S_INFO_BOX = styled(BOX)(
       padding-inline-start: 1rem;
       margin-block-start: 0;
       margin-block-end: 0;
+    }
+  `
+);
+
+// pages
+
+export const S_MAIN = styled.main`
+  height: var(--vh100);
+  min-height: 500px;
+  display: grid;
+
+  section {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+      width: min(800px, 100%);
+      height: min(500px, 100%);
+    }
+  }
+`;
+
+export const S_TABLE = styled.table(
+  ({ theme }) => css`
+    width: 100%;
+    border-spacing: 0;
+    font-size: 14px;
+    text-align: center;
+
+    thead {
+      color: ${theme.font_light};
+    }
+
+    th {
+      padding: 1rem 0.8rem;
+    }
+
+    tbody tr {
+      transition: background-color var(--transition-t);
+
+      :nth-child(odd) {
+        background-color: ${theme.primary};
+      }
+      :nth-child(even) {
+        background-color: ${theme.secondary};
+      }
+      &.matchHeader {
+        background-color: ${theme.table_background};
+        color: ${theme.table_color};
+      }
     }
   `
 );

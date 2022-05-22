@@ -9,7 +9,7 @@ const dataTypes = '(?<tipo_de_dato>int|double)',
 
 const regExpPattern = `${dataTypes}|${curlyBraces}|${reserverdWords}|${relations}|${ids}|${nums}|${literals}|${arithmetic}`;
 
-export const regExpPerLine = new RegExp(regExpPattern, 'dg');
+export const regexForLines = new RegExp(regExpPattern, 'dg');
 
 // BLOCKS
 const BLOCK = type =>
@@ -29,4 +29,4 @@ const BLOCK_FOR = `(?<Bloque_FOR>(?<p_reservada_F>\\bfor\\b)\\s*(?<i_condicion_F
 
 const regExpPattern2 = `${BLOCK_IFELSE}|${BLOCK_IF}|${BLOCK_FOR}`;
 
-export const regExpMultiline = new RegExp(regExpPattern2, 'dgm');
+export const regexForBlocks = new RegExp(regExpPattern2, 'dgm');

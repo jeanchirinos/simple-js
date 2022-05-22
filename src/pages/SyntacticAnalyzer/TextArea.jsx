@@ -12,11 +12,11 @@ export default function TextArea({ code }) {
       const groupName = group[0],
         groupValue = group[1];
 
-      if (groupValue === undefined) {
+      if (!groupValue) {
         return (
-          <li
-            key={index}
-          >{`Línea ( ${lineNumber} ) sintaxis ERROR. Se esperaba un(a) ${groupName}`}</li>
+          <li key={index}>
+            Línea ( {lineNumber} ) sintaxis ERROR. Se esperaba un(a) {groupName}
+          </li>
         );
       } else {
         return <Fragment key={index} />;
@@ -43,25 +43,10 @@ export default function TextArea({ code }) {
             }
 
             if (index === regexArray.length - 1)
-              return (
-                <li key={index}>{`Línea ( ${lineNumber} ) sintaxis ERROR`}</li>
-              );
+              return <li key={index}>Línea ( {lineNumber} ) sintaxis ERROR</li>;
 
             return <Fragment key={index} />;
           });
-
-          // const match1 = line.match(regExp1),
-          //   match2 = line.match(regExp2);
-
-          // if (match1) {
-          //   return checkErrors(match1, lineNumber);
-          // } else if (match2) {
-          //   return checkErrors(match2, lineNumber);
-          // } else {
-          //   return (
-          //     <li key={index}>{`Línea ( ${lineNumber} ) sintaxis ERROR`}</li>
-          //   );
-          // }
         })}
       </ul>
     </S_INFO_BOX>

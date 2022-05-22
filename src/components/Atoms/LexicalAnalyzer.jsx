@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
-import styled, { css } from 'styled-components';
-import { regExpPerLine, regExpMultiline } from 'regexp/Lexic';
+import { regexForLines, regexForBlocks } from 'regex/Lexic';
+import { S_TABLE } from 'components/StyledComponents';
 
 function Rows({ match, lineNumber }) {
   const groups = Object.entries(match.groups);
@@ -28,15 +28,7 @@ function Rows({ match, lineNumber }) {
 
 export default function LexicalAnalyzer({ code }) {
   const lines = code.split('\n');
-
-  const matchesByLine = lines.map((line, index) => {
-    const lineNumber = index + 1,
-      matches = Array.from(line.matchAll(regExpPerLine));
-
-    return { lineNumber, matches };
-  });
-
-  const matchesByBlock = Array.from(code.matchAll(regExpMultiline));
+  const blockMatches = Array.from(code.matchAll(regexForBlocks));
 
   return (
     <S_TABLE>
@@ -49,47 +41,19 @@ export default function LexicalAnalyzer({ code }) {
         </tr>
       </thead>
       <tbody>
-        {matchesByLine.map(line =>
-          line.matches.map(match => (
-            <Rows match={match} lineNumber={line.lineNumber} />
-          ))
-        )}
-        {matchesByBlock.map(match => (
-          <Rows match={match} lineNumber="-" />
+        {lines.map((line, index) => {
+          const lineNumber = index + 1;
+          const matches = Array.from(line.matchAll(regexForLines));
+
+          return matches.map((match, index) => (
+            <Rows key={index} match={match} lineNumber={lineNumber} />
+          ));
+        })}
+
+        {blockMatches.map((match, index) => (
+          <Rows key={index} match={match} lineNumber="-" />
         ))}
       </tbody>
     </S_TABLE>
   );
 }
-
-const S_TABLE = styled.table(
-  ({ theme }) => css`
-    width: 100%;
-    border-spacing: 0;
-    font-size: 14px;
-    text-align: center;
-
-    thead {
-      background-color: ${theme.secondary};
-      color: ${theme.font_light};
-    }
-
-    th {
-      padding: 1rem 0.8rem;
-    }
-
-    tr.matchHeader {
-      background-color: ${theme.table_background};
-      color: ${theme.table_color};
-    }
-
-    tr:nth-child(even):not(.matchHeader) {
-      background-color: ${theme.secondary};
-    }
-
-    thead,
-    tr {
-      transition: background-color var(--transition-t);
-    }
-  `
-);

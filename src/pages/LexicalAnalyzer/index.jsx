@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import Editor from 'components/Custom/Editor';
 import Checkbox from './Checkbox';
 import Table from './Table';
+import { S_MAIN } from 'components/StyledComponents';
 
 export default function LexicalAnalyzer() {
   const [code, setCode] = useState('if(a>b && a >0) {\nc = a – b;\n}');
   const [matchAllChecked, setMatchAllChecked] = useState(false);
 
   return (
-    <S_MAIN>
+    <S_MAIN2>
       <section>
         <Editor code={code} setCode={setCode} />
       </section>
@@ -22,27 +23,12 @@ export default function LexicalAnalyzer() {
       <section>
         <Table code={code} matchAllChecked={matchAllChecked} />
       </section>
-    </S_MAIN>
+    </S_MAIN2>
   );
 }
 
-const S_MAIN = styled.main`
-  height: var(--vh100);
-  min-height: 500px;
-  display: grid;
+const S_MAIN2 = styled(S_MAIN)`
   grid-template: 1fr auto 1fr / 1fr;
-
-  section {
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    > div {
-      width: min(800px, 100%);
-      height: min(500px, 100%);
-    }
-  }
 
   @media (min-width: 768px) {
     grid-template: 1fr / 1fr auto 1fr;

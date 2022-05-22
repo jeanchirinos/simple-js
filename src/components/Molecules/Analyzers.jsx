@@ -8,7 +8,7 @@ export default function Analyzers() {
 
   return (
     <Grid templateRows="minmax(0,6fr) repeat(2, minmax(0,2fr))" rowGap={0.5}>
-      <BOX style={{ overflow: 'auto', backgroundColor: 'transparent' }}>
+      <BOX style={{ overflow: 'auto' }}>
         <LexicalAnalyzer code={code} />
       </BOX>
       <S_INFO_BOX>
