@@ -8,7 +8,7 @@ import Home from 'pages/Home';
 import LexicalAnalyzer from 'pages/LexicalAnalyzer';
 import Header from 'components/Molecules/Header';
 import CustomToaster from 'components/Atoms/CustomToaster';
-import SyntacticAnalyzer from 'pages/SyntacticAnalyzer';
+import AnalizadorSintactico from 'pages/AnalizadorSintactico';
 
 export default function App() {
   const { darkTheme } = useContext(Theme);
@@ -25,7 +25,7 @@ export default function App() {
           <Route path="/analizador-lexico" element={<LexicalAnalyzer />} />
           <Route
             path="/analizador-sintactico"
-            element={<SyntacticAnalyzer />}
+            element={<AnalizadorSintactico />}
           />
         </Routes>
         <CustomToaster />

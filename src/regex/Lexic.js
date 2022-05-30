@@ -1,13 +1,13 @@
-const dataTypes = '(?<tipo_de_dato>int|double)',
-  curlyBraces = '(?<llave_de_apertura>{)|(?<llave_de_cierre>})',
+const dataTypes = '(?<tipo_de_dato>number|text)',
+  curlyBraces = '(?<puntuacion>{|}|\\(|\\))',
   reserverdWords = '(?<palabra_reservada>const|if|else|for)',
   relations = '(?<relacion><=|>=|<>|<|>|=)',
-  ids = '(?<![\\w."])(?<id>[a-zA-Z]\\w*)(?![\\w].")',
+  variables = '(?<![\\w."])(?<variable>[a-zA-Z]\\w*)(?![\\w].")',
   nums = '(?<![\\w."])(?<numero>\\d+\\.\\d+|\\d+)(?![\\w."])',
   literals = '"(?<literal>[^"]+)"',
   arithmetic = '(?<aritmetico>\\+|\\-|/|\\*|%)';
 
-const regExpPattern = `${dataTypes}|${curlyBraces}|${reserverdWords}|${relations}|${ids}|${nums}|${literals}|${arithmetic}`;
+const regExpPattern = `${dataTypes}|${curlyBraces}|${reserverdWords}|${relations}|${variables}|${nums}|${literals}|${arithmetic}`;
 
 export const regexForLines = new RegExp(regExpPattern, 'dg');
 

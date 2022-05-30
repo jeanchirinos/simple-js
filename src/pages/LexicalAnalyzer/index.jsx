@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Editor from 'components/Custom/Editor';
 import Checkbox from './Checkbox';
-import Table from './Table';
+import Table from './Tabla';
 import { S_MAIN } from 'components/StyledComponents';
 
 export default function LexicalAnalyzer() {

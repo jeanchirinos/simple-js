@@ -100,9 +100,10 @@ export const S_INFO_BOX = styled(BOX)(
     }
 
     ul {
+      list-style: none;
       font-size: 0.8rem;
       line-height: 1.2rem;
-      padding-inline-start: 1rem;
+      padding-inline-start: 0rem;
       margin-block-start: 0;
       margin-block-end: 0;
     }

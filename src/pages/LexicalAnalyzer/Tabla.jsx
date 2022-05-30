@@ -1,10 +1,10 @@
 import { BOX, S_TABLE } from 'components/StyledComponents';
-import { regExp, regExpAll } from './regExp';
+import { regExp, regExpAll } from './regexs';
 
 function Rows({ match }) {
   const groups = Object.entries(match.groups);
 
-  return groups.map((group, index) => {
+  return groups.map((group, i) => {
     const type = group[0],
       token = group[1],
       position = match.indices.groups[type][0];
@@ -13,7 +13,7 @@ function Rows({ match }) {
       className = isABlockHeader ? 'matchHeader' : '';
 
     return (
-      <tr key={index} className={className}>
+      <tr key={i} className={className}>
         <td>{position}</td>
         <td>{token}</td>
         <td>{type}</td>
@@ -40,8 +40,8 @@ export default function Table({ code, matchAllChecked }) {
         </thead>
         <tbody>
           {match && <Rows match={match} />}
-          {matches?.map(match => (
-            <Rows match={match} />
+          {matches?.map((match, i) => (
+            <Rows key={i} match={match} />
           ))}
         </tbody>
       </S_TABLE>
