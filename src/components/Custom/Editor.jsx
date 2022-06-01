@@ -77,6 +77,7 @@ export default function Editor({ code, setCode }) {
 
   // ClearCodeButton
   function handleClearCode() {
+    if (!code) return;
     setCode('');
     toast('Código borrado', { icon: '🧹' });
   }

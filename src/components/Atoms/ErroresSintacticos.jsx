@@ -1,5 +1,5 @@
 import { S_INFO_BOX } from 'components/StyledComponents';
-import { regexLineas, regexBloques } from './regexs';
+import { regexLineas, regexBloques } from 'regex/Sintactico';
 
 const datosLineas = lineas => {
   const datos = {};
@@ -16,7 +16,7 @@ const datosLineas = lineas => {
   return datos;
 };
 
-export default function Errores({ code: codigo }) {
+export default function ErroresSintacticos({ codigo }) {
   const matchesPorBloque = Array.from(codigo.matchAll(regexBloques));
   const lineas = codigo.split('\n');
 

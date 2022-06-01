@@ -7,7 +7,7 @@ import Errores from './Errores';
 
 export default function AnalizadorSintactico() {
   const [code, setCode] = useState(
-    'function(){\nint var1=1;\nString mensaje;\nString mensaje="Hola";\n}'
+    'num miNumero = 5;\ntxt miTexto = "Hola";\n\nfunc hola(){\n  num adios = 8;\n}'
   );
 
   return (

@@ -1,42 +1,86 @@
-import { Fragment } from 'react';
-import { numero2 } from './regexs';
 import { BOX, S_TABLE } from 'components/StyledComponents';
+import { regexLineas, regexBloques } from './regexs';
 
-function Rows({ match, code }) {
-  const groups = Object.entries(match.groups);
+const datosLineas = lineas => {
+  const datos = {};
+  let contador = 0;
 
-  return groups.map((group, i) => {
-    const token = group[1];
-    if (!token) return <Fragment key={i}></Fragment>;
+  lineas.forEach((linea, i) => {
+    datos[i + 1] = {
+      inicio: contador,
+      fin: contador + linea.length,
+    };
+    contador += linea.length + 1;
+  });
 
-    const tipo = group[0],
-      position = match.indices.groups[tipo][0];
+  return datos;
+};
 
-    const isABlockHeader = token === match[0] && tipo.startsWith('B_'),
-      className = isABlockHeader ? 'matchHeader' : '';
+export default function Analisis({ code: codigo }) {
+  const matchesPorBloque = Array.from(codigo.matchAll(regexBloques));
+  const lineas = codigo.split('\n');
 
-    const lineas = code.split('\n');
-    const tamanioLineas = {};
+  return (
+    <BOX className="contenedor-tabla">
+      <S_TABLE>
+        <thead>
+          <tr>
+            <th>Línea</th>
+            <th>Columna</th>
+            <th>Token</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <>
+            {lineas.map((linea, indice) => {
+              const matchesPorLinea = Array.from(linea.matchAll(regexLineas));
 
-    //
-    let contador = 0;
+              return matchesPorLinea.map((datosMatch, i) => (
+                <DatosMatchLinea
+                  key={i}
+                  numeroDeLinea={indice + 1}
+                  datosMatch={datosMatch}
+                />
+              ));
+            })}
 
-    lineas.forEach((linea, i) => {
-      tamanioLineas[i + 1] = { inicio: contador, fin: contador + linea.length };
-      contador += linea.length + 1;
-    });
+            {matchesPorBloque.map((datosMatch, i) => (
+              <DatosMatchBloque
+                key={i}
+                datosLineas={datosLineas(lineas)}
+                datosMatch={datosMatch}
+              />
+            ))}
+          </>
+        </tbody>
+      </S_TABLE>
+    </BOX>
+  );
+}
 
-    const encontrado = Object.entries(tamanioLineas).find(
-      linea => linea[1].inicio <= position && linea[1].fin >= position
-    );
+function DatosMatchLinea({ numeroDeLinea, datosMatch }) {
+  if (datosMatch.groups['HB_declaracion_funcion']) return null;
 
-    const numeroDeLinea = encontrado[0];
-    //
+  const grupos = Object.entries(datosMatch.groups);
+
+  return grupos.map((grupo, i) => {
+    const token = grupo[1];
+
+    if (!token) return null;
+
+    const tipo = grupo[0];
+    const posicion = datosMatch.indices.groups[tipo][0];
+
+    if (tipo === 'incorrecto') return null;
+
+    const columna = posicion + 1;
+    const clase = tipo.startsWith('H') ? 'matchHeader' : '';
 
     return (
-      <tr key={i} className={className}>
+      <tr key={i} className={clase}>
         <td>{numeroDeLinea}</td>
-        <td>{position}</td>
+        <td>{columna}</td>
         <td>{token}</td>
         <td>{tipo}</td>
       </tr>
@@ -44,26 +88,36 @@ function Rows({ match, code }) {
   });
 }
 
-export default function Analisis({ code }) {
-  const blockMatches = Array.from(code.matchAll(numero2));
+function DatosMatchBloque({ datosLineas, datosMatch }) {
+  if (datosMatch.groups['H_declaracion_variable']) return null;
 
-  return (
-    <BOX style={{ overflow: 'auto' }}>
-      <S_TABLE>
-        <thead>
-          <tr>
-            <th>Línea</th>
-            <th>Posición</th>
-            <th>Token</th>
-            <th>Tipo</th>
-          </tr>
-        </thead>
-        <tbody>
-          {blockMatches.map((match, i) => (
-            <Rows key={i} match={match} code={code} />
-          ))}
-        </tbody>
-      </S_TABLE>
-    </BOX>
-  );
+  const grupos = Object.entries(datosMatch.groups);
+
+  return grupos.map((group, i) => {
+    const token = group[1];
+
+    if (!token) return null;
+
+    const tipo = group[0];
+    const posicion = datosMatch.indices.groups[tipo][0];
+
+    if (tipo === 'incorrecto') return null;
+
+    const datosLinea = Object.entries(datosLineas).find(
+      datos => datos[1].inicio <= posicion && datos[1].fin >= posicion
+    );
+
+    const numeroDeLinea = datosLinea[0];
+    const columna = posicion - datosLineas[numeroDeLinea].inicio + 1;
+    const clase = tipo.startsWith('H') ? 'matchHeader' : '';
+
+    return (
+      <tr key={i} className={clase}>
+        <td>{numeroDeLinea}</td>
+        <td>{columna}</td>
+        <td>{token}</td>
+        <td>{tipo}</td>
+      </tr>
+    );
+  });
 }

@@ -1,6 +1,6 @@
 const dataTypes = '(?<tipo_de_dato>number|text)',
   curlyBraces = '(?<puntuacion>{|}|\\(|\\))',
-  reserverdWords = '(?<palabra_reservada>const|if|else|for)',
+  reserverdWords = '(?<palabra_reservada>txt|num|func)',
   relations = '(?<relacion><=|>=|<>|<|>|=)',
   variables = '(?<![\\w."])(?<variable>[a-zA-Z]\\w*)(?![\\w].")',
   nums = '(?<![\\w."])(?<numero>\\d+\\.\\d+|\\d+)(?![\\w."])',

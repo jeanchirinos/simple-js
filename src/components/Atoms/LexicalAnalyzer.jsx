@@ -9,13 +9,14 @@ function Rows({ match, lineNumber }) {
     const token = group[1];
     if (!token) return <Fragment key={i}></Fragment>;
 
-    const type = group[0],
-      position = match.indices.groups[type][0];
+    const type = group[0];
+    const posicion = match.indices.groups[type][0];
+    const columna = posicion + 1;
 
     return (
       <tr key={i}>
         <td>{lineNumber}</td>
-        <td>{position}</td>
+        <td>{columna}</td>
         <td>{token}</td>
         <td>{type}</td>
       </tr>
@@ -31,18 +32,17 @@ export default function LexicalAnalyzer({ code }) {
       <thead>
         <tr>
           <th>Línea</th>
-          <th>Posición</th>
+          <th>Columna</th>
           <th>Token</th>
           <th>Tipo</th>
         </tr>
       </thead>
       <tbody>
-        {lines.map((line, i) => {
-          const lineNumber = i + 1;
+        {lines.map((line, indice) => {
           const matches = Array.from(line.matchAll(regexForLines));
 
           return matches.map((match, i) => (
-            <Rows key={i} match={match} lineNumber={lineNumber} />
+            <Rows key={i} match={match} lineNumber={indice + 1} />
           ));
         })}
       </tbody>

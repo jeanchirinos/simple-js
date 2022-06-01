@@ -74,6 +74,10 @@ export const BOX = styled.div(
     box-shadow: ${theme.box_shadow};
     transition: background-color var(--transition-t),
       outline var(--transition-t), box-shadow var(--transition-t);
+
+    &.contenedor-tabla {
+      overflow: auto;
+    }
   `
 );
 
@@ -107,6 +111,10 @@ export const S_INFO_BOX = styled(BOX)(
       margin-block-start: 0;
       margin-block-end: 0;
     }
+
+    .ubicacion {
+      color: gray;
+    }
   `
 );
 
@@ -136,6 +144,15 @@ export const S_TABLE = styled.table(
     border-spacing: 0;
     font-size: 14px;
     text-align: center;
+
+    .cabecera {
+      /* background-color: black; */
+      padding: 0.8rem;
+      border-top: 1px solid #666666;
+      border-bottom: 1px solid #666666;
+      /* color: ${theme.primary}; */
+      /* color: black; */
+    }
 
     thead {
       color: ${theme.font_light};

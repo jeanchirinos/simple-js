@@ -4,8 +4,12 @@ import toast from 'react-hot-toast';
 export const Code = createContext();
 
 export default function CodeContext({ children }) {
-  const [code, setCode] = useState(`if( a > b && a > 0 ) {\n  c = a - b;\n}`);
+  const [code, setCode] = useState(
+    `num miNumero = 5;\ntxt miTexto = "Hola";\n\nfunc hola(){\n  num adios = 8;\n}}`
+  );
   const [compiledCode, setCompiledCode] = useState(code);
+
+  const [hayErrores, setHayErrores] = useState(false);
 
   function clearCode() {
     if (!code) return;
@@ -52,6 +56,8 @@ export default function CodeContext({ children }) {
         setCompiledCode,
         clearCode,
         uploadFile,
+        hayErrores,
+        setHayErrores,
       }}
     >
       {children}
