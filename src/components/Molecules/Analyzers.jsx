@@ -15,7 +15,7 @@ export default function Analyzers() {
       <BOX className="contenedor-tabla">
         <LexicalAnalyzer code={code} />
       </BOX>
-      <AnalizadorSintactico code={code} />
+      <AnalizadorSintactico codigo={code} />
       <ErroresSintacticos codigo={code} />
     </>
     // </Grid>

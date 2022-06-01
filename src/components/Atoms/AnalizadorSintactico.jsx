@@ -16,7 +16,7 @@ const datosLineas = lineas => {
   return datos;
 };
 
-export default function AnalizadorSintactico({ code: codigo }) {
+export default function AnalizadorSintactico({ codigo }) {
   const matchesPorBloque = Array.from(codigo.matchAll(regexBloques));
   const lineas = codigo.split('\n');
 

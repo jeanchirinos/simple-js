@@ -5,7 +5,7 @@ export const Code = createContext();
 
 export default function CodeContext({ children }) {
   const [code, setCode] = useState(
-    `num miNumero = 5;\ntxt miTexto = "Hola";\n\nfunc hola(){\n  num adios = 8;\n}}`
+    `num miNumero = 5;\ntxt miTexto = "Hola";\n\nfunc hola(){\n  num adios = 8;\n}`
   );
   const [compiledCode, setCompiledCode] = useState(code);
 
