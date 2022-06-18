@@ -12,7 +12,7 @@ export default function SeccionInformacion() {
 
 const S_INFO_SECTION = styled(S_SECCION)`
   height: 100vh;
-  grid-template-rows: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
 
   @media (min-width: 768px) {
     height: var(--pantalla-completa);

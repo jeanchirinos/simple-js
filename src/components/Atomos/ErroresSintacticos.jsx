@@ -1,8 +1,9 @@
 import { S_CAJA_INFORMACION } from 'components/StyledComponents';
-import useCodigo from 'hooks/useCodigo';
+import { CtxCodigo } from 'context/CtxCodigo';
+import { useContext } from 'react';
 
 export default function ErroresSintacticos() {
-  const { gruposConAdvertencia, gruposConError } = useCodigo();
+  const { gruposConAdvertencia, gruposConError } = useContext(CtxCodigo);
 
   return (
     <S_CAJA_INFORMACION>

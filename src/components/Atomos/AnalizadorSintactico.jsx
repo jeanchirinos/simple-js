@@ -1,8 +1,9 @@
-import useCodigo from 'hooks/useCodigo';
+import { CtxCodigo } from 'context/CtxCodigo';
+import { useContext } from 'react';
 import Tabla from './Tabla';
 
 export default function AnalizadorSintactico() {
-  const { gruposCorrectos } = useCodigo();
+  const { gruposCorrectos } = useContext(CtxCodigo);
 
   return (
     <Tabla>

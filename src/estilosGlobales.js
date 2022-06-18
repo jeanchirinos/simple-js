@@ -68,6 +68,7 @@ export default createGlobalStyle(
 
     svg.icono-gris,
     .icono-gris svg {
+      display: block;
       color: gray;
       cursor: pointer;
       transition: color var(--transition-t);

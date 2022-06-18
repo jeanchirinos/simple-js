@@ -1,5 +1,4 @@
 import { AiFillGithub } from 'react-icons/ai';
-import { css } from 'styled-components/macro';
 
 export default function LinkGithub() {
   return (
@@ -8,12 +7,7 @@ export default function LinkGithub() {
       target="_blank"
       rel="noreferrer"
     >
-      <AiFillGithub className="icono-gris" css={estilos} />
+      <AiFillGithub className="icono-gris" style={{ fontSize: '28px' }} />
     </a>
   );
 }
-
-const estilos = css`
-  display: block;
-  font-size: 28px;
-`;

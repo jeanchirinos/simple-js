@@ -7,18 +7,13 @@ import 'prismjs/themes/prism.css';
 // Mantener orden de importación para editor
 
 function Editable() {
-  const { codigo, setCodigo, setCodigoCompilado } = useContext(CtxCodigo);
-
-  function compilarCodigo(codigo) {
-    setCodigo(codigo);
-    setCodigoCompilado(codigo);
-  }
+  const { codigo, setCodigo } = useContext(CtxCodigo);
 
   return (
     <S_EDITOR
       placeholder="Escribe aquí..."
       value={codigo}
-      onValueChange={codigo => compilarCodigo(codigo)}
+      onValueChange={codigo => setCodigo(codigo)}
       highlight={codigo => customizarEditor(codigo)}
     />
   );

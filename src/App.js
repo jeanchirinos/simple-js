@@ -29,6 +29,6 @@ export default function App() {
 const S_MAIN = styled.main`
   @media (min-width: 768px) {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 45% 55%;
   }
 `;
