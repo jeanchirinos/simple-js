@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 export const Flex = styled.article(
   ({
@@ -60,56 +60,55 @@ export const Grid = styled.article(
 );
 
 //
-export const S_SECTION = styled.section`
+export const S_SECCION = styled.section`
   min-height: 700px;
   padding: 0.8rem;
   display: grid;
   row-gap: 1rem;
 `;
 
-export const BOX = styled.div(
+export const CAJA = styled.div(
   ({ theme }) => css`
-    background-color: ${theme.secondary};
+    background-color: ${theme.secundario};
     border-radius: 8px;
-    box-shadow: ${theme.box_shadow};
+    box-shadow: ${theme.editor_sombra};
     transition: background-color var(--transition-t),
       outline var(--transition-t), box-shadow var(--transition-t);
-
-    &.contenedor-tabla {
-      overflow: auto;
-    }
   `
 );
 
-export const S_CODE_BOX = styled(BOX)`
+export const CAJA_TABLA = styled(CAJA)`
+  position: relative;
+  overflow: auto;
+`;
+
+export const S_CAJA_CODIGO = styled(CAJA)`
   position: relative;
   overflow: hidden;
 
   > div {
-    height: 100%;
+    height: calc(100% - 54px);
     overflow: auto;
   }
 `;
 
-export const S_INFO_BOX = styled(BOX)(
+export const S_CAJA_INFORMACION = styled(CAJA)(
   ({ theme }) => css`
     padding: 0.8rem 0.8rem 0 0.8rem;
     overflow: auto;
 
     p {
-      color: ${theme.font_light};
+      color: ${theme.fuente_light};
       font-size: 0.9rem;
       text-align: end;
       margin-bottom: 0.8rem;
     }
 
     ul {
+      all: unset;
       list-style: none;
       font-size: 0.8rem;
       line-height: 1.2rem;
-      padding-inline-start: 0rem;
-      margin-block-start: 0;
-      margin-block-end: 0;
     }
 
     .ubicacion {
@@ -118,27 +117,24 @@ export const S_INFO_BOX = styled(BOX)(
   `
 );
 
-// pages
+export const S_BOTONES = styled.aside.attrs({
+  className: 'icono-gris',
+})`
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  position: absolute;
+  top: 15px;
+  right: 20px;
 
-export const S_MAIN = styled.main`
-  height: var(--vh100);
-  min-height: 500px;
-  display: grid;
-
-  section {
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    > div {
-      width: min(800px, 100%);
-      height: min(500px, 100%);
-    }
+  svg {
+    font-size: 1.2rem;
   }
 `;
 
-export const S_TABLE = styled.table(
+// pages
+
+export const S_TABLA = styled.table(
   ({ theme }) => css`
     width: 100%;
     border-spacing: 0;
@@ -146,16 +142,13 @@ export const S_TABLE = styled.table(
     text-align: center;
 
     .cabecera {
-      /* background-color: black; */
       padding: 0.8rem;
       border-top: 1px solid #666666;
       border-bottom: 1px solid #666666;
-      /* color: ${theme.primary}; */
-      /* color: black; */
     }
 
     thead {
-      color: ${theme.font_light};
+      color: ${theme.fuente_light};
     }
 
     th {
@@ -166,14 +159,14 @@ export const S_TABLE = styled.table(
       transition: background-color var(--transition-t);
 
       :nth-child(odd) {
-        background-color: ${theme.primary};
+        background-color: ${theme.primario};
       }
       :nth-child(even) {
-        background-color: ${theme.secondary};
+        background-color: ${theme.secundario};
       }
-      &.matchHeader {
-        background-color: ${theme.table_background};
-        color: ${theme.table_color};
+      &.fila-principal {
+        background-color: ${theme.tabla_fila_fondo};
+        color: ${theme.tabla_fila_fuente};
       }
     }
   `

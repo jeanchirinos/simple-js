@@ -2,15 +2,13 @@
   "files.exclude": {
     "node_modules": true,
     "public": true,
-    ".gitignore": true,
     "package-lock.json": true,
     "package.json": true,
     "README.md": true,
     "yarn.lock": true,
     "jsconfig.json": true,
-    "src/components/Atoms/code-tokens-colors.txt": true,
-    // Hide other pages
-    "src/pages/LexicalAnalyzer": false,
-    "src/components/Custom": false,
+    "babel-plugin-macros.config.js": true,
+    ".gitignore": true,
+    "src/utilities/tokensClaros.txt": true,
   },
 }

@@ -1,35 +1,34 @@
+import Notificador from 'components/Atomos/Notificador';
+import Cabecera from 'components/Moleculas/Cabecera';
+import { CtxTema } from 'context/CtxTema';
+import EstilosGlobales from 'estilosGlobales';
 import { useContext } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyles from 'globalStyles';
-import { Theme } from 'context/ThemeContext';
-import { lightColors, darkColors } from 'styleguide/themedColors';
-import Home from 'pages/Home';
-import LexicalAnalyzer from 'pages/LexicalAnalyzer';
-import Header from 'components/Molecules/Header';
-import CustomToaster from 'components/Atoms/CustomToaster';
-import AnalizadorSintactico from 'pages/AnalizadorSintactico';
+import styled, { ThemeProvider } from 'styled-components/macro';
+import { coloresClaros, coloresOscuros } from 'utilities/coloresTemas';
+import SeccionCodigo from 'components/Organismos/SeccionCodigo';
+import SeccionInformacion from 'components/Organismos/SeccionInformacion';
 
 export default function App() {
-  const { darkTheme } = useContext(Theme);
+  const { temaOscuro } = useContext(CtxTema);
 
-  const theme = darkTheme ? darkColors : lightColors;
+  const tema = temaOscuro ? coloresOscuros : coloresClaros;
 
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/analizador-lexico" element={<LexicalAnalyzer />} />
-          <Route
-            path="/analizador-sintactico"
-            element={<AnalizadorSintactico />}
-          />
-        </Routes>
-        <CustomToaster />
-      </ThemeProvider>
-    </BrowserRouter>
+    <ThemeProvider theme={tema}>
+      <EstilosGlobales />
+      <Cabecera />
+      <S_MAIN>
+        <SeccionCodigo />
+        <SeccionInformacion />
+      </S_MAIN>
+      <Notificador />
+    </ThemeProvider>
   );
 }
+
+const S_MAIN = styled.main`
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
