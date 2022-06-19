@@ -2,7 +2,7 @@ const numeros = '(?<![\\w."])(?:\\d+\\.\\d+|\\d+)(?![\\w."])';
 const textos = '"[^"]*"';
 const variables = '[a-zA-Z]\\w*';
 
-const declaracion_funcion = `(?<HB_declaracion_funcion>(?<p_reservada>\\bfunc\\b)\\s*(?<nombre_funcion>\\w*)\\s*(?<i_condicion>\\(?)\\s*(?<f_condicion>\\)?)\\s*(?<i_instruccion>\\{?)\\s*(?<instruccion>[^\\}]*)\\s*(?<f_instruccion>\\}?))`;
+const declaracion_funcion = `(?<H_declaracion_funcion>(?<p_reservada>\\bfunc\\b)\\s*(?<nombre_funcion>\\w*)\\s*(?<i_condicion>\\(?)\\s*(?<f_condicion>\\)?)\\s*(?<i_instruccion>\\{?)(?<instruccion>[^\\}]*)(?<f_instruccion>\\}?))`;
 
 const declaracion_variable = `(?<H_declaracion_variable>(?<palabra_reservada>\\btxt|\\bnum)(?!\\s*(?:txt|num))\\s*(?<variable>(?:${variables})?)\\s*(?:(?<simbolo_asignacion>=)\\s*(?<valor>(?:${textos}|${numeros})?))?\\s*(?<declaracion_fin>;)?)`;
 

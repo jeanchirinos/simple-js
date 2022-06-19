@@ -1,11 +1,11 @@
 import useCodigo from 'hooks/useCodigo';
-import regex from 'regexs/Lexico';
+import regexLexico from 'regexs/Lexico';
 import Tabla from './Tabla';
 
 export default function AnalizadorLexico() {
   const { obtenerMatches, obtenerUbicacion } = useCodigo();
 
-  const matches = obtenerMatches(regex);
+  const matches = obtenerMatches(regexLexico);
 
   return (
     <Tabla>

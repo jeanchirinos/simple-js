@@ -28,9 +28,10 @@ export default function ContextoCodigo({ children }) {
   }, [codigo]);
 
   const infoLineas = useCallback(() => {
-    const lineas = codigo.split('\n');
+    let lineas = codigo.split('\n');
 
     const datos = [];
+
     let contador = 0;
 
     lineas.forEach((linea, i) => {
@@ -41,8 +42,6 @@ export default function ContextoCodigo({ children }) {
       });
       contador += linea.length + 1;
     });
-
-    console.log(datos);
 
     return datos;
   }, [codigo]);
@@ -64,67 +63,84 @@ export default function ContextoCodigo({ children }) {
   );
 
   const obtenerGrupos0 = useCallback(() => {
-    let correctos = [],
-      conAdvertencia = [],
-      conError = [];
+    let correctos = [];
+    let conAdvertencia = [];
+    let conError = [];
 
-    function obtenerGrupos(codigo, linea, columna) {
-      const matches = Array.from(codigo.matchAll(regexSintactico));
+    const obtenerMatches = regex2 => Array.from(codigo.matchAll(regex2));
+    const obtenerMatches2 = codigo2 =>
+      Array.from(codigo2.matchAll(regexSintactico));
 
-      matches.forEach(match => {
+    const matches = obtenerMatches(regexSintactico);
+
+    function obtenerGrupos(instruccion) {
+      let matches2 = matches;
+
+      if (instruccion) {
+        matches2 = obtenerMatches2(instruccion);
+      }
+
+      matches2.forEach(match => {
         const grupos = Object.entries(match.groups);
         const indices = match.indices.groups;
 
-        const gruposCorrectos = grupos.filter(
+        const gruposCorrectos2 = grupos.filter(
           grupo => grupo[0] !== 'incorrecto' && grupo[1]
         );
 
-        const gruposConAdvertencia = grupos.filter(grupo => grupo[1] === '');
+        const gruposConAdvertencia2 = grupos.filter(grupo => grupo[1] === '');
 
-        const gruposConError = grupos.filter(
+        const gruposConError2 = grupos.filter(
           grupo => grupo[0] === 'incorrecto' && grupo[1]
         );
 
-        correctos.push(infoGrupos(gruposCorrectos, indices, linea, columna));
-        conAdvertencia.push(
-          infoGrupos(gruposConAdvertencia, indices, linea, columna)
-        );
-        conError.push(infoGrupos(gruposConError, indices, linea, columna));
+        correctos.push(infoGrupos(gruposCorrectos2, indices));
+        conAdvertencia.push(infoGrupos(gruposConAdvertencia2, indices));
+        conError.push(infoGrupos(gruposConError2, indices));
       });
     }
 
-    function infoGrupos(grupos, indices, prevLinea, prevColumna) {
+    obtenerGrupos();
+
+    function infoGrupos(grupos, indices) {
       return grupos.map(grupo => {
         const tipo = grupo[0];
+
         const token = grupo[1];
-        let posicion = indices[tipo][0];
 
-        posicion = prevColumna + posicion;
+        const posicion = indices[tipo][0];
 
-        const { linea, columna } = obtenerUbicacion(posicion, prevLinea);
+        const { linea, columna } = obtenerUbicacion(posicion);
 
         if (tipo === 'instruccion' && token !== '') {
-          const nuevoToken = token.split('\n').filter(Boolean).join('\n');
-          console.log(nuevoToken);
-
-          obtenerGrupos(nuevoToken, linea, posicion + 1);
+          obtenerGrupos(token);
         }
 
         return { linea, columna, tipo, token };
       });
     }
 
-    obtenerGrupos(codigo, 0, 0);
-
-    setGruposCorrectos(correctos.flat());
-    setGruposConAdvertencia(conAdvertencia.flat());
-    setGruposConError(conError.flat());
+    return {
+      correctos2: correctos,
+      conAdvertencia2: conAdvertencia,
+      conError2: conError,
+    };
   }, [codigo, obtenerUbicacion]);
 
   useEffect(() => {
     compilarCodigo();
+    infoLineas();
     obtenerGrupos0();
-  }, [compilarCodigo, obtenerGrupos0]);
+
+    const { correctos2, conAdvertencia2, conError2 } = obtenerGrupos0();
+
+    const gruposCorrectos = correctos2.flat();
+    const gruposConAdvertencia = conAdvertencia2.flat();
+    const gruposConError = conError2.flat();
+    setGruposCorrectos(gruposCorrectos);
+    setGruposConAdvertencia(gruposConAdvertencia);
+    setGruposConError(gruposConError);
+  }, [infoLineas, compilarCodigo, obtenerGrupos0]);
 
   return (
     <CtxCodigo.Provider
