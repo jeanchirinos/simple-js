@@ -60,12 +60,6 @@ export const Grid = styled.article(
 );
 
 //
-export const S_SECCION = styled.section`
-  min-height: 700px;
-  padding: 0.8rem;
-  display: grid;
-  row-gap: 1rem;
-`;
 
 export const CAJA = styled.div(
   ({ theme }) => css`
@@ -77,11 +71,6 @@ export const CAJA = styled.div(
   `
 );
 
-export const CAJA_TABLA = styled(CAJA)`
-  position: relative;
-  overflow: auto;
-`;
-
 export const S_CAJA_CODIGO = styled(CAJA)`
   position: relative;
   overflow: hidden;
@@ -91,31 +80,6 @@ export const S_CAJA_CODIGO = styled(CAJA)`
     overflow: auto;
   }
 `;
-
-export const S_CAJA_INFORMACION = styled(CAJA)(
-  ({ theme }) => css`
-    padding: 0.8rem 0.8rem 0 0.8rem;
-    overflow: auto;
-
-    p {
-      color: ${theme.fuente_light};
-      font-size: 0.9rem;
-      text-align: end;
-      margin-bottom: 0.8rem;
-    }
-
-    ul {
-      all: unset;
-      list-style: none;
-      font-size: 0.8rem;
-      line-height: 1.2rem;
-    }
-
-    .ubicacion {
-      color: gray;
-    }
-  `
-);
 
 export const S_BOTONES = styled.aside.attrs({
   className: 'icono-gris',
@@ -131,43 +95,3 @@ export const S_BOTONES = styled.aside.attrs({
     font-size: 1.2rem;
   }
 `;
-
-// pages
-
-export const S_TABLA = styled.table(
-  ({ theme }) => css`
-    width: 100%;
-    border-spacing: 0;
-    font-size: 14px;
-    text-align: center;
-
-    .cabecera {
-      padding: 0.8rem;
-      border-top: 1px solid #666666;
-      border-bottom: 1px solid #666666;
-    }
-
-    thead {
-      color: ${theme.fuente_light};
-    }
-
-    th {
-      padding: 1rem 0.8rem;
-    }
-
-    tbody tr {
-      transition: background-color var(--transition-t);
-
-      :nth-child(odd) {
-        background-color: ${theme.primario};
-      }
-      :nth-child(even) {
-        background-color: ${theme.secundario};
-      }
-      &.fila-principal {
-        background-color: ${theme.tabla_fila_fondo};
-        color: ${theme.tabla_fila_fuente};
-      }
-    }
-  `
-);

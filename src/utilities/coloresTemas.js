@@ -15,6 +15,10 @@ const temaOscuro = {
   notificador_fuente_exito: '#ace7d3',
   notificador_fondo_error: '#33150f',
   notificador_fuente_error: '#e7b6ac',
+  advertencia_fondo: '#3a3a08',
+  advertencia_fuente: '#f2f2a1',
+  error_fondo: '#330f0f',
+  error_fuente: '#fca5a5',
 };
 
 const temaClaro = {
@@ -33,6 +37,10 @@ const temaClaro = {
   notificador_fuente_exito: '#2d9a76',
   notificador_fondo_error: '#f7e6e3',
   notificador_fuente_error: '#9a3f2d',
+  advertencia_fondo: '#F6F6C1',
+  advertencia_fuente: '#AEAE19',
+  error_fondo: '#FECACA',
+  error_fuente: '#C84141',
 };
 
 export const coloresOscuros = {

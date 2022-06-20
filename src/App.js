@@ -3,10 +3,9 @@ import Cabecera from 'components/Moleculas/Cabecera';
 import { CtxTema } from 'context/CtxTema';
 import EstilosGlobales from 'estilosGlobales';
 import { useContext } from 'react';
-import styled, { ThemeProvider } from 'styled-components/macro';
+import { ThemeProvider } from 'styled-components/macro';
 import { coloresClaros, coloresOscuros } from 'utilities/coloresTemas';
-import SeccionCodigo from 'components/Organismos/SeccionCodigo';
-import SeccionInformacion from 'components/Organismos/SeccionInformacion';
+import Principal from 'components/Organismos/Principal';
 
 export default function App() {
   const { temaOscuro } = useContext(CtxTema);
@@ -17,18 +16,8 @@ export default function App() {
     <ThemeProvider theme={tema}>
       <EstilosGlobales />
       <Cabecera />
-      <S_MAIN>
-        <SeccionCodigo />
-        <SeccionInformacion />
-      </S_MAIN>
+      <Principal />
       <Notificador />
     </ThemeProvider>
   );
 }
-
-const S_MAIN = styled.main`
-  @media (min-width: 768px) {
-    display: grid;
-    grid-template-columns: 45% 55%;
-  }
-`;

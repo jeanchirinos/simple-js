@@ -18,7 +18,6 @@ export default function ContextoCodigo({ children }) {
     if (!codigo) return;
 
     setCodigo('');
-    setCodigoCompilado('');
     toast('Código borrado', { icon: '🧹' });
   }
 
@@ -41,8 +40,6 @@ export default function ContextoCodigo({ children }) {
       });
       contador += linea.length + 1;
     });
-
-    console.log(datos);
 
     return datos;
   }, [codigo]);
@@ -105,8 +102,6 @@ export default function ContextoCodigo({ children }) {
 
         if (tipo === 'instruccion' && token !== '') {
           const nuevoToken = token.split('\n').filter(Boolean).join('\n');
-          console.log(nuevoToken);
-
           obtenerGrupos(nuevoToken, linea, posicion + 1);
         }
 
@@ -116,7 +111,7 @@ export default function ContextoCodigo({ children }) {
 
     obtenerGrupos(codigo, 0, 0);
 
-    setGruposCorrectos(correctos.flat());
+    setGruposCorrectos(correctos.flat().sort((a, b) => a.linea - b.linea));
     setGruposConAdvertencia(conAdvertencia.flat());
     setGruposConError(conError.flat());
   }, [codigo, obtenerUbicacion]);

@@ -51,10 +51,6 @@ export default createGlobalStyle(
     }
     /*  */
 
-    .pantalla-completa {
-      height: var(--pantalla-completa);
-    }
-
     .notificador {
       font-size: 0.8rem;
       background-color: ${theme.notificador_fondo_exito};

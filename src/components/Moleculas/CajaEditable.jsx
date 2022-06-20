@@ -37,19 +37,20 @@ export default function CajaEditable() {
         setter={setNombreDeArchivo}
         extension={extension}
       />
+
       <div>
         <EditorDeCodigo.Editable />
-        <S_BOTONES>
-          <BotonCopiar codigo={codigo} />
-          <BotonAbrir />
-          <BotonBorrar />
-          <BotonDescargar
-            codigo={codigo}
-            nombreDeArchivo={nombreDeArchivo}
-            extension={extension}
-          />
-        </S_BOTONES>
       </div>
+      <S_BOTONES>
+        <BotonCopiar codigo={codigo} />
+        <BotonAbrir />
+        <BotonBorrar />
+        <BotonDescargar
+          codigo={codigo}
+          nombreDeArchivo={nombreDeArchivo}
+          extension={extension}
+        />
+      </S_BOTONES>
     </S_CAJA_EDITABLE>
   );
 }

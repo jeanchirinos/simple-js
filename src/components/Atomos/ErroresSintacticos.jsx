@@ -1,5 +1,6 @@
-import { S_CAJA_INFORMACION } from 'components/StyledComponents';
+import { S_CAJA_INFORMACION, S_GRUPOS } from './_ErroresSintacticos';
 import { CtxCodigo } from 'context/CtxCodigo';
+import { valores } from 'utilities/valores';
 import { useContext } from 'react';
 
 export default function ErroresSintacticos() {
@@ -7,36 +8,44 @@ export default function ErroresSintacticos() {
 
   return (
     <S_CAJA_INFORMACION>
-      <ul>
-        {gruposConAdvertencia?.map((grupo, i) => (
-          <Mensaje
-            {...grupo}
-            key={i}
-            mensaje={`⚠️ Te falta un(a) ${grupo.tipo}`}
-          />
-        ))}
-      </ul>
-
-      <ul>
-        {gruposConError?.map((grupo, i) => (
-          <Mensaje
-            {...grupo}
-            key={i}
-            mensaje={`❌ Expresión incorrecta: ${grupo.token}`}
-          />
-        ))}
-      </ul>
+      <Grupos
+        grupos={gruposConAdvertencia}
+        nombre="Advertencias"
+        mensaje="⚠️ Te falta un(a) "
+        propiedad="tipo"
+      />
+      <Grupos
+        grupos={gruposConError}
+        nombre="Errores"
+        mensaje="❌ Expresión incorrecta : "
+        propiedad="token"
+      />
     </S_CAJA_INFORMACION>
   );
 }
 
-function Mensaje({ mensaje, linea, columna }) {
+function Grupos({ grupos, nombre, mensaje, propiedad }) {
   return (
-    <li>
-      {mensaje}
-      <span className="ubicacion">
-        [ {linea}, {columna} ]
-      </span>
-    </li>
+    grupos.length > 0 && (
+      <S_GRUPOS>
+        <p className={nombre}>{nombre}</p>
+        <ol>
+          {grupos.map((grupo, i) => {
+            const valor = valores.find(valor => valor[0] === grupo.tipo);
+
+            return (
+              <li key={i}>
+                {mensaje}
+                {grupo[propiedad]}
+                {valor && <b> {valor[1]} </b>}
+                <span>
+                  [ {grupo.linea}, {grupo.columna} ]
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+      </S_GRUPOS>
+    )
   );
 }

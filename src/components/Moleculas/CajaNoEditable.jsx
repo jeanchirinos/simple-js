@@ -24,15 +24,15 @@ export default function CajaNoEditable() {
       />
       <div>
         <EditorDeCodigo.NoEditable />
-        <S_BOTONES>
-          <BotonCopiar codigo={codigoCompilado} />
-          <BotonDescargar
-            codigo={codigoCompilado}
-            nombreDeArchivo={nombreDeArchivoCompilado}
-            extension={extension}
-          />
-        </S_BOTONES>
       </div>
+      <S_BOTONES>
+        <BotonCopiar codigo={codigoCompilado} />
+        <BotonDescargar
+          codigo={codigoCompilado}
+          nombreDeArchivo={nombreDeArchivoCompilado}
+          extension={extension}
+        />
+      </S_BOTONES>
     </S_CAJA_CODIGO>
   );
 }

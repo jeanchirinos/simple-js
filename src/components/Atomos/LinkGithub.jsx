@@ -7,7 +7,7 @@ export default function LinkGithub() {
       target="_blank"
       rel="noreferrer"
     >
-      <AiFillGithub className="icono-gris" style={{ fontSize: '28px' }} />
+      <AiFillGithub className="icono-gris" size={28} />
     </a>
   );
 }
