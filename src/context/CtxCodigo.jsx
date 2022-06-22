@@ -7,6 +7,7 @@ import {
 } from 'react';
 import toast from 'react-hot-toast';
 import regexSintactico from 'regexs/Sintactico';
+import { reemplazos } from 'utilities/valores';
 
 export const CtxCodigo = createContext();
 
@@ -28,8 +29,11 @@ export default function ContextoCodigo({ children }) {
   }
 
   const compilarCodigo = useCallback(() => {
-    const codigoCompilado = codigo.replace(/func/g, 'function');
-    setCodigoCompilado(codigoCompilado);
+    let nuevoCodigo = codigo;
+
+    reemplazos.forEach(r => (nuevoCodigo = nuevoCodigo.replace(r[0], r[1])));
+
+    setCodigoCompilado(nuevoCodigo);
   }, [codigo]);
 
   const infoLineas = useMemo(() => {
@@ -68,7 +72,7 @@ export default function ContextoCodigo({ children }) {
       conAdvertencia = [],
       conError = [];
 
-    function obtenerGrupos(codigo, columna = 0) {
+    function rellenarGrupos(codigo, prevColumna = 0) {
       const matches = Array.from(codigo.matchAll(regexSintactico));
 
       matches.forEach(match => {
@@ -85,9 +89,11 @@ export default function ContextoCodigo({ children }) {
 
         const gruposConError = grupos.filter(g => g[0] === 'incorrecto');
 
-        correctos.push(infoGrupos(gruposCorrectos, indices, columna));
-        conAdvertencia.push(infoGrupos(gruposConAdvertencia, indices, columna));
-        conError.push(infoGrupos(gruposConError, indices, columna));
+        correctos.push(infoGrupos(gruposCorrectos, indices, prevColumna));
+        conAdvertencia.push(
+          infoGrupos(gruposConAdvertencia, indices, prevColumna)
+        );
+        conError.push(infoGrupos(gruposConError, indices, prevColumna));
       });
     }
 
@@ -101,13 +107,13 @@ export default function ContextoCodigo({ children }) {
 
         const { linea, columna } = obtenerUbicacion(posicion);
 
-        if (tipo === 'instruccion' && token) obtenerGrupos(token, posicion);
+        if (tipo === 'instruccion' && token) rellenarGrupos(token, posicion);
 
         return { linea, columna, tipo, token };
       });
     }
 
-    obtenerGrupos(codigo);
+    rellenarGrupos(codigo);
 
     setGruposCorrectos(correctos.flat().sort((a, b) => a.linea - b.linea));
     setGruposConAdvertencia(conAdvertencia.flat());
