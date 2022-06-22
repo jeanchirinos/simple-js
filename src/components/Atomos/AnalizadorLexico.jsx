@@ -1,11 +1,12 @@
-import useCodigo from 'hooks/useCodigo';
+import { CtxCodigo } from 'context/CtxCodigo';
+import { useContext } from 'react';
 import regexLexico from 'regexs/Lexico';
 import Tabla from './Tabla';
 
 export default function AnalizadorLexico() {
-  const { obtenerMatches, obtenerUbicacion } = useCodigo();
+  const { codigo, obtenerUbicacion } = useContext(CtxCodigo);
 
-  const matches = obtenerMatches(regexLexico);
+  const matches = Array.from(codigo.matchAll(regexLexico));
 
   return (
     <Tabla>

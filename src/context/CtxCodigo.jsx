@@ -1,4 +1,10 @@
-import { createContext, useCallback, useEffect, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import toast from 'react-hot-toast';
 import regexSintactico from 'regexs/Sintactico';
 
@@ -26,31 +32,28 @@ export default function ContextoCodigo({ children }) {
     setCodigoCompilado(codigoCompilado);
   }, [codigo]);
 
-  const infoLineas = useCallback(() => {
+  const infoLineas = useMemo(() => {
     const lineas = codigo.split('\n');
 
-    const datos = [];
     let contador = 0;
 
-    lineas.forEach((linea, i) => {
-      datos.push({
-        linea: i + 1,
-        inicio: contador,
-        fin: contador + linea.length,
-      });
-      contador += linea.length + 1;
-    });
+    return lineas.map((linea, i) => {
+      const inicio = contador;
+      const fin = inicio + linea.length;
 
-    return datos;
+      contador = fin + 1;
+
+      return {
+        linea: i + 1,
+        inicio,
+        fin,
+      };
+    });
   }, [codigo]);
 
   const obtenerUbicacion = useCallback(
     posicion => {
-      const ubicacion = infoLineas().find(
-        linea => linea.inicio <= posicion && linea.fin >= posicion
-      );
-
-      if (!ubicacion) return { linea: 0, columna: 0 };
+      const ubicacion = infoLineas.find(linea => posicion <= linea.fin);
 
       const linea = ubicacion.linea;
       const columna = posicion - ubicacion.inicio + 1;
@@ -60,56 +63,51 @@ export default function ContextoCodigo({ children }) {
     [infoLineas]
   );
 
-  const obtenerGrupos0 = useCallback(() => {
+  const obtenerGrupos = useCallback(() => {
     let correctos = [],
       conAdvertencia = [],
       conError = [];
 
-    function obtenerGrupos(codigo, linea, columna) {
+    function obtenerGrupos(codigo, columna = 0) {
       const matches = Array.from(codigo.matchAll(regexSintactico));
 
       matches.forEach(match => {
-        const grupos = Object.entries(match.groups);
+        const grupos = Object.entries(match.groups).filter(
+          g => g[1] !== undefined
+        );
         const indices = match.indices.groups;
 
         const gruposCorrectos = grupos.filter(
-          grupo => grupo[0] !== 'incorrecto' && grupo[1]
+          g => g[0] !== 'incorrecto' && g[1]
         );
 
         const gruposConAdvertencia = grupos.filter(grupo => grupo[1] === '');
 
-        const gruposConError = grupos.filter(
-          grupo => grupo[0] === 'incorrecto' && grupo[1]
-        );
+        const gruposConError = grupos.filter(g => g[0] === 'incorrecto');
 
-        correctos.push(infoGrupos(gruposCorrectos, indices, linea, columna));
-        conAdvertencia.push(
-          infoGrupos(gruposConAdvertencia, indices, linea, columna)
-        );
-        conError.push(infoGrupos(gruposConError, indices, linea, columna));
+        correctos.push(infoGrupos(gruposCorrectos, indices, columna));
+        conAdvertencia.push(infoGrupos(gruposConAdvertencia, indices, columna));
+        conError.push(infoGrupos(gruposConError, indices, columna));
       });
     }
 
-    function infoGrupos(grupos, indices, prevLinea, prevColumna) {
+    function infoGrupos(grupos, indices, prevColumna) {
       return grupos.map(grupo => {
         const tipo = grupo[0];
         const token = grupo[1];
         let posicion = indices[tipo][0];
 
-        posicion = prevColumna + posicion;
+        if (prevColumna) posicion = prevColumna + posicion;
 
-        const { linea, columna } = obtenerUbicacion(posicion, prevLinea);
+        const { linea, columna } = obtenerUbicacion(posicion);
 
-        if (tipo === 'instruccion' && token !== '') {
-          const nuevoToken = token.split('\n').filter(Boolean).join('\n');
-          obtenerGrupos(nuevoToken, linea, posicion + 1);
-        }
+        if (tipo === 'instruccion' && token) obtenerGrupos(token, posicion);
 
         return { linea, columna, tipo, token };
       });
     }
 
-    obtenerGrupos(codigo, 0, 0);
+    obtenerGrupos(codigo);
 
     setGruposCorrectos(correctos.flat().sort((a, b) => a.linea - b.linea));
     setGruposConAdvertencia(conAdvertencia.flat());
@@ -118,8 +116,8 @@ export default function ContextoCodigo({ children }) {
 
   useEffect(() => {
     compilarCodigo();
-    obtenerGrupos0();
-  }, [compilarCodigo, obtenerGrupos0]);
+    obtenerGrupos();
+  }, [compilarCodigo, obtenerGrupos]);
 
   return (
     <CtxCodigo.Provider
@@ -135,6 +133,7 @@ export default function ContextoCodigo({ children }) {
         setGruposCorrectos,
         setGruposConAdvertencia,
         setGruposConError,
+        obtenerUbicacion,
       }}
     >
       {children}

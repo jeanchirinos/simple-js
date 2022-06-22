@@ -1,5 +1,16 @@
 {
   "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**.exe": true,
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.project": true,
+    "**/.settings": true,
     "node_modules": true,
     "public": true,
     "package-lock.json": true,
@@ -10,7 +21,6 @@
     "babel-plugin-macros.config.js": true,
     ".gitignore": true,
     "src/utilities/tokensClaros.txt": true,
-    // 
     "src/components/Atomos/BotonAbrir.jsx": true,
     "src/components/Atomos/BotonBorrar.jsx": true,
     "src/components/Atomos/BotonCopiar.jsx": true,
@@ -26,11 +36,11 @@
     "src/components/Organismos": true,
     "src/components/StyledComponents.js": true,
     "src/context/CtxTema.jsx": true,
-    "src/hooks/useArchivo.js": true,
+    "src/hooks": true,
     "src/utilities/coloresTemas.js": true,
     "src/utilities/tokensOscuros.js": true,
     "src/App.js": true,
     "src/estilosGlobales.js": true,
-    "src/index.js": true,
+    "src/index.js": true
   },
 }

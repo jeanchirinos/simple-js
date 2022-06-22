@@ -39,7 +39,7 @@ export const S_GRUPOS = styled.div(
       }
     }
 
-    b::before {
+    b:before {
       content: ' : ';
       font-weight: normal;
     }

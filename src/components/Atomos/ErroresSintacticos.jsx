@@ -25,27 +25,27 @@ export default function ErroresSintacticos() {
 }
 
 function Grupos({ grupos, nombre, mensaje, propiedad }) {
-  return (
-    grupos.length > 0 && (
-      <S_GRUPOS>
-        <p className={nombre}>{nombre}</p>
-        <ol>
-          {grupos.map((grupo, i) => {
-            const valor = valores.find(valor => valor[0] === grupo.tipo);
+  if (!grupos.length) return;
 
-            return (
-              <li key={i}>
-                {mensaje}
-                {grupo[propiedad]}
-                {valor && <b> {valor[1]} </b>}
-                <span>
-                  [ {grupo.linea}, {grupo.columna} ]
-                </span>
-              </li>
-            );
-          })}
-        </ol>
-      </S_GRUPOS>
-    )
+  return (
+    <S_GRUPOS>
+      <p className={nombre}>{nombre}</p>
+      <ol>
+        {grupos.map((grupo, i) => {
+          const valor = valores.find(valor => valor[0] === grupo.tipo);
+
+          return (
+            <li key={i}>
+              {mensaje}
+              {grupo[propiedad]}
+              {valor && <b> {valor[1]} </b>}
+              <span>
+                [ {grupo.linea}, {grupo.columna} ]
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </S_GRUPOS>
   );
 }
