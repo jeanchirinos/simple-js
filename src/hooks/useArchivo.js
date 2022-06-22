@@ -9,7 +9,7 @@ export default function useArchivo() {
   const [nombreDeArchivoCompilado, setNombreDeArchivoCompilado] =
     useState('archivo-compilado');
 
-  const { setCodigo, setCodigoCompilado } = useContext(CtxCodigo);
+  const { setCodigo } = useContext(CtxCodigo);
 
   function subirArchivo(e) {
     const archivo = e.dataTransfer?.files[0] || e.target.files[0];
@@ -29,6 +29,8 @@ export default function useArchivo() {
 
     const archivoSinExtension = archivo.name.slice(0, -4);
 
+    console.log(archivoSinExtension);
+
     setNombreDeArchivo(archivoSinExtension);
     setNombreDeArchivoCompilado(archivoSinExtension);
 
@@ -36,9 +38,7 @@ export default function useArchivo() {
 
     lector.onload = e => {
       const contenido = e.target.result;
-
       setCodigo(contenido);
-      setCodigoCompilado(contenido);
 
       toast('Código cargado', { icon: '📁' });
     };
