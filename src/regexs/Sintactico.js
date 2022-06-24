@@ -1,10 +1,27 @@
+import id from 'uniqid';
+
+const p_reservada = 'palabra_reservada__',
+  i_condicion = 'inicio_condicion__',
+  f_condicion = 'fin_condicion__',
+  instruccion = 'instruccion__',
+  i_instruccion = 'inicio_instruccion__',
+  f_instruccion = 'fin_instruccion__';
+
 const numeros = '(?<![\\w."])(?:\\d+\\.\\d+|\\d+)(?![\\w."])';
 const textos = '"[^"]*"';
 const variables = '[a-zA-Z]\\w*';
 
-const declaracion_funcion = `(?<H_declaracion_funcion>(?<p_reservada>\\bfunc\\b)\\s*(?<nombre_funcion>\\w*)\\s*(?<i_condicion>\\(?)\\s*(?<f_condicion>\\)?)\\s*(?<i_instruccion>\\{?)(?<instruccion>[^\\}]*)(?<f_instruccion>\\}?))`;
+const declaracion_funcion = `(?<H_declaracion_funcion>(?<${id(
+  p_reservada
+)}>\\bfunc\\b)\\s*(?<nombre_funcion>\\w*)\\s*(?<${id(
+  i_condicion
+)}>\\(?)\\s*(?<${id(f_condicion)}>\\)?)\\s*(?<${id(i_instruccion)}>\\{?)(?<${id(
+  instruccion
+)}>[^\\}]*)(?<${id(f_instruccion)}>\\}?))`;
 
-const declaracion_variable = `(?<H_declaracion_variable>(?<palabra_reservada>\\btxt|\\bnum)(?!\\s*(?:txt|num))\\s*(?<variable>(?:${variables})?)\\s*(?:(?<simbolo_asignacion>=)\\s*(?<valor>(?:${textos}|${numeros})?))?\\s*(?<declaracion_fin>;)?)`;
+const declaracion_variable = `(?<H_declaracion_variable>(?<${id(
+  p_reservada
+)}>\\btxt|\\bnum)(?!\\s*(?:txt|num))\\s*(?<variable>(?:${variables})?)\\s*(?:(?<simbolo_asignacion>=)\\s*(?<valor>(?:${textos}|${numeros})?))?\\s*(?<fin_declaracion>;)?)`;
 
 const incorrecto = '(?<incorrecto>\\S+)';
 

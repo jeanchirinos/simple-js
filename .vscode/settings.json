@@ -25,7 +25,6 @@
     "src/components/Organismos": true,
     "src/components/StyledComponents.js": true,
     "src/context/CtxTema.jsx": true,
-    "src/hooks": true,
     "src/utilities/coloresTemas.js": true,
     "src/utilities/tokensOscuros.js": true,
     "src/App.js": true,

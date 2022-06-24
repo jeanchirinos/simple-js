@@ -5,8 +5,8 @@ import BotonDescargar from 'components/Atomos/BotonDescargar';
 import EditorDeCodigo from 'components/Atomos/EditorDeCodigo';
 import NombreArchivo from 'components/Atomos/NombreArchivo';
 import { S_BOTONES } from 'components/StyledComponents';
+import { CtxArchivo } from 'context/CtxArchivo';
 import { CtxCodigo } from 'context/CtxCodigo';
-import useArchivo from 'hooks/useArchivo';
 import { useContext } from 'react';
 import { S_CAJA_EDITABLE } from './_CajaEditable';
 
@@ -18,7 +18,7 @@ export default function CajaEditable() {
     setNombreDeArchivo,
     arrastrando,
     setArrastrando,
-  } = useArchivo();
+  } = useContext(CtxArchivo);
 
   const { codigo } = useContext(CtxCodigo);
 

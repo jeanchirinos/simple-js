@@ -4,13 +4,14 @@ import EditorDeCodigo from 'components/Atomos/EditorDeCodigo';
 import NombreArchivo from 'components/Atomos/NombreArchivo';
 import { S_CAJA_CODIGO } from 'components/StyledComponents';
 import { CtxCodigo } from 'context/CtxCodigo';
-import useArchivo from 'hooks/useArchivo';
 import { useContext } from 'react';
 import { S_BOTONES } from 'components/StyledComponents';
+import { CtxArchivo } from 'context/CtxArchivo';
 
 export default function CajaNoEditable() {
   const { nombreDeArchivoCompilado, setNombreDeArchivoCompilado } =
-    useArchivo();
+    useContext(CtxArchivo);
+
   const { codigoCompilado } = useContext(CtxCodigo);
 
   const extension = '.js';

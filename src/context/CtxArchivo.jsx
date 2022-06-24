@@ -1,8 +1,10 @@
-import { useContext, useState } from 'react';
-import { CtxCodigo } from 'context/CtxCodigo';
+import { createContext, useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { CtxCodigo } from './CtxCodigo';
 
-export default function useArchivo() {
+export const CtxArchivo = createContext();
+
+export default function ContextoArchivo({ children }) {
   const [arrastrando, setArrastrando] = useState(false);
 
   const [nombreDeArchivo, setNombreDeArchivo] = useState('archivo');
@@ -27,9 +29,7 @@ export default function useArchivo() {
       return;
     }
 
-    const archivoSinExtension = archivo.name.slice(0, -4);
-
-    console.log(archivoSinExtension);
+    const archivoSinExtension = archivo.name.replace(/\.(sjs|txt)$/, '');
 
     setNombreDeArchivo(archivoSinExtension);
     setNombreDeArchivoCompilado(archivoSinExtension);
@@ -62,15 +62,17 @@ export default function useArchivo() {
     }
   }
 
-  return {
-    arrastrando,
-    setArrastrando,
-    subirArchivo,
-    alArrastrar,
-    alSoltar,
+  const value = {
     nombreDeArchivo,
     setNombreDeArchivo,
     nombreDeArchivoCompilado,
     setNombreDeArchivoCompilado,
+    arrastrando,
+    setArrastrando,
+    alArrastrar,
+    alSoltar,
+    subirArchivo,
   };
+
+  return <CtxArchivo.Provider value={value}>{children}</CtxArchivo.Provider>;
 }

@@ -1,6 +1,6 @@
 import { S_CAJA_INFORMACION, S_GRUPOS } from './_ErroresSintacticos';
 import { CtxCodigo } from 'context/CtxCodigo';
-import { valores } from 'utilities/valores';
+import { valores } from 'utilities';
 import { useContext } from 'react';
 
 export default function ErroresSintacticos() {

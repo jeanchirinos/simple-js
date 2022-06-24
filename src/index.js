@@ -1,4 +1,5 @@
 import App from 'App';
+import ContextoArchivo from 'context/CtxArchivo';
 import ContextoCodigo from 'context/CtxCodigo';
 import ContextoTema from 'context/CtxTema';
 import { StrictMode } from 'react';
@@ -9,7 +10,9 @@ root.render(
   <StrictMode>
     <ContextoTema>
       <ContextoCodigo>
-        <App />
+        <ContextoArchivo>
+          <App />
+        </ContextoArchivo>
       </ContextoCodigo>
     </ContextoTema>
   </StrictMode>

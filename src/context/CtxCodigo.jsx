@@ -7,7 +7,7 @@ import {
 } from 'react';
 import toast from 'react-hot-toast';
 import regexSintactico from 'regexs/Sintactico';
-import { reemplazos } from 'utilities/valores';
+import { reemplazos } from 'utilities';
 
 export const CtxCodigo = createContext();
 
@@ -72,8 +72,8 @@ export default function ContextoCodigo({ children }) {
       conAdvertencia = [],
       conError = [];
 
-    function rellenarGrupos(codigo, prevColumna = 0) {
-      const matches = Array.from(codigo.matchAll(regexSintactico));
+    function rellenarGrupos(entrada, prevColumna = 0) {
+      const matches = Array.from(entrada.matchAll(regexSintactico));
 
       matches.forEach(match => {
         const grupos = Object.entries(match.groups).filter(
@@ -99,11 +99,12 @@ export default function ContextoCodigo({ children }) {
 
     function infoGrupos(grupos, indices, prevColumna) {
       return grupos.map(grupo => {
-        const tipo = grupo[0];
+        let tipo = grupo[0];
         const token = grupo[1];
         let posicion = indices[tipo][0];
 
-        if (prevColumna) posicion = prevColumna + posicion;
+        tipo = tipo.replace(/__.+/, '');
+        posicion += prevColumna;
 
         const { linea, columna } = obtenerUbicacion(posicion);
 
@@ -125,24 +126,20 @@ export default function ContextoCodigo({ children }) {
     obtenerGrupos();
   }, [compilarCodigo, obtenerGrupos]);
 
-  return (
-    <CtxCodigo.Provider
-      value={{
-        codigo,
-        setCodigo,
-        codigoCompilado,
-        setCodigoCompilado,
-        borrarCodigo,
-        gruposCorrectos,
-        gruposConAdvertencia,
-        gruposConError,
-        setGruposCorrectos,
-        setGruposConAdvertencia,
-        setGruposConError,
-        obtenerUbicacion,
-      }}
-    >
-      {children}
-    </CtxCodigo.Provider>
-  );
+  const value = {
+    codigo,
+    setCodigo,
+    codigoCompilado,
+    setCodigoCompilado,
+    borrarCodigo,
+    gruposCorrectos,
+    gruposConAdvertencia,
+    gruposConError,
+    setGruposCorrectos,
+    setGruposConAdvertencia,
+    setGruposConError,
+    obtenerUbicacion,
+  };
+
+  return <CtxCodigo.Provider value={value}>{children}</CtxCodigo.Provider>;
 }

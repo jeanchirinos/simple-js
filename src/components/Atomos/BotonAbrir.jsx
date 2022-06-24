@@ -1,8 +1,9 @@
-import useArchivo from 'hooks/useArchivo';
+import { CtxArchivo } from 'context/CtxArchivo';
+import { useContext } from 'react';
 import { AiOutlineFolderOpen } from 'react-icons/ai';
 
 export default function BotonAbrir() {
-  const { subirArchivo } = useArchivo();
+  const { subirArchivo } = useContext(CtxArchivo);
 
   function abrirExplorador() {
     const inputArchivo = document.getElementById('inputArchivo');
