@@ -3,6 +3,7 @@ import id from 'uniqid';
 const p_reservada = 'palabra_reservada__',
   i_condicion = 'inicio_condicion__',
   f_condicion = 'fin_condicion__',
+  condicion = 'condicion__',
   instruccion = 'instruccion__',
   i_instruccion = 'inicio_instruccion__',
   f_instruccion = 'fin_instruccion__';
@@ -11,40 +12,41 @@ const numeros = '(?<![\\w."])(?:\\d+\\.\\d+|\\d+)(?![\\w."])';
 const textos = '"[^"]*"';
 const variables = '[a-zA-Z]\\w*';
 
+const BLOQUE_INSTRUCCION = () =>
+  `(?<${id(i_instruccion)}>\\{?)(?<${id(instruccion)}>[^\\}]*)(?<${id(
+    f_instruccion
+  )}>\\}?)`;
+
+const BLOQUE_CONDICION = () =>
+  `(?<${id(i_condicion)}>\\(?)(?<${id(condicion)}>[^\\)]*)(?<${id(
+    f_condicion
+  )}>\\)?)`;
+
 const declaracion_funcion = `(?<H_declaracion_funcion>(?<${id(
   p_reservada
-)}>\\bfunc\\b)\\s*(?<nombre_funcion>\\w*)\\s*(?<${id(
-  i_condicion
-)}>\\(?)\\s*(?<${id(f_condicion)}>\\)?)\\s*(?<${id(i_instruccion)}>\\{?)(?<${id(
-  instruccion
-)}>[^\\}]*)(?<${id(f_instruccion)}>\\}?))`;
+)}>\\bfunc\\b)\\s*(?<nombre_funcion>\\w*)\\s*(?<${id(i_condicion)}>\\(?)(?<${id(
+  condicion
+)}>[^\\)]*)?(?<${id(f_condicion)}>\\)?)\\s*${BLOQUE_INSTRUCCION()})`;
 
 const declaracion_variable = `(?<H_declaracion_variable>(?<${id(
   p_reservada
 )}>\\btxt|\\bnum)(?!\\s*(?:txt|num))\\s*(?<variable>(?:${variables})?)\\s*(?:(?<simbolo_asignacion>=)\\s*(?<valor>(?:${textos}|${numeros})?))?\\s*(?<fin_declaracion>;)?)`;
 
+const declaracion_condicion = `(?<H_condicion>(?<${id(
+  p_reservada
+)}>\\bcond\\b)\\s*${BLOQUE_CONDICION()}\\s*${BLOQUE_INSTRUCCION()})`;
+
+const declaracion_loop = `(?<H_loop>(?<${id(
+  p_reservada
+)}>\\bloop\\b)\\s*${BLOQUE_CONDICION()}\\s*${BLOQUE_INSTRUCCION()})`;
+
+const impresion = `(?<H_impresion>(?<${id(
+  p_reservada
+)}>\\blog\\b)\\s*(?<inicio_valor>\\(?)(?<valor_impresion>[^\\)]*)(?<fin_valor>\\)?)(?<fin_impresion>;)?)`;
+
 const incorrecto = '(?<incorrecto>\\S+)';
 
 export default new RegExp(
-  `${declaracion_funcion}|${declaracion_variable}|${incorrecto}`,
+  `${declaracion_funcion}|${declaracion_variable}|${impresion}|${declaracion_condicion}|${declaracion_loop}|${incorrecto}`,
   'gd'
 );
-
-// BLOQUES
-
-// const BLOQUE = tipo =>
-//   `\\s*(?<i_bloque_${tipo}>{)\\s*(?<instruccion_${tipo}>.+)\\s*(?<f_bloque_${tipo}>})`;
-
-// const BLOQUE_IFELSE = `(?<Bloque_IFELSE>(?<p_reservada_IE>\\bif\\b)\\s*(?<i_condicion_IE>\\()(?<condicion_IE>.+)(?<f_condicion_IE>\\))${BLOQUE(
-//   'IE'
-// )}\\s*(?<p_reservada_E>\\belse\\b)\\s*(?<i_bloque_E>{)\\s*(?<instruccion_E>.+)\\s*(?<f_bloque_E>}))`;
-
-// const BLOQUE_IF = `(?<Bloque_IF>(?<p_reservada_I>\\bif\\b)\\s*(?<i_condicion_I>\\()(?<condicion_I>.+)(?<f_condicion_I>\\))${BLOQUE(
-//   'I'
-// )})`;
-
-// const BLOQUE_FOR = `(?<Bloque_FOR>(?<p_reservada_F>\\bfor\\b)\\s*(?<i_condicion_F>\\()(?<condicion_F>.+;.+;.+)(?<f_condicion_F>\\))${BLOQUE(
-//   'F'
-// )})`;
-
-// `${BLOQUE_IFELSE}|${BLOQUE_IF}|${BLOQUE_FOR}`;

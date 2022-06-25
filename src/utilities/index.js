@@ -8,4 +8,7 @@ export const valores = [
 export const reemplazos = [
   [/func/g, 'function'],
   [/txt|num/g, 'let'],
+  [/cond/g, 'if'],
+  [/loop/g, 'for'],
+  [/log/g, 'console.log'],
 ];
